@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 // The Controller coordinates interactions
 // between the View and Model
 
-public class CalculatorController {
+public class  CalculatorController {
 
     private CalculatorView theView;
     private CalculatorModel theModel;
