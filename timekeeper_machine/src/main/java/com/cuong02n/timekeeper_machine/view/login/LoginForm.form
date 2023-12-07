@@ -6,20 +6,22 @@
     </constraints>
     <properties>
       <enabled value="true"/>
-      <minimumSize width="800" height="600"/>
-      <preferredSize width="800" height="600"/>
+      <minimumSize width="400" height="300"/>
+      <preferredSize width="400" height="300"/>
     </properties>
     <clientProperties>
       <html.disable class="java.lang.Boolean" value="false"/>
     </clientProperties>
     <border type="none"/>
     <children>
-      <component id="ecd6a" class="javax.swing.JLabel" binding="loginLabel">
+      <component id="ecd6a" class="javax.swing.JLabel">
         <constraints border-constraint="North"/>
         <properties>
           <enabled value="true"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
+          <inheritsPopupMenu value="true"/>
+          <preferredSize width="24" height="24"/>
           <text value="Đăng nhập"/>
           <verticalAlignment value="0"/>
         </properties>
@@ -46,7 +48,7 @@
               <text value="Mật Khẩu:"/>
             </properties>
           </component>
-          <component id="4aaaa" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="4aaaa" class="javax.swing.JTextField" binding="id">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -54,7 +56,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="8fef5" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+          <component id="8fef5" class="javax.swing.JPasswordField" binding="password">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -70,7 +72,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="15100" class="javax.swing.JButton" binding="btnLogin">
+          <component id="15100" class="javax.swing.JButton" binding="loginButton">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

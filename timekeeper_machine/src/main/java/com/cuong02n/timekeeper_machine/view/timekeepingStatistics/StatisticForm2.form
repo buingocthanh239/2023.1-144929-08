@@ -20,7 +20,7 @@
               <text value="Thông tin chấm công tổng hợp"/>
             </properties>
           </component>
-          <component id="11e60" class="javax.swing.JButton" binding="xuấtThốngKêButton" default-binding="true">
+          <component id="11e60" class="javax.swing.JButton" binding="exportButton">
             <constraints border-constraint="East"/>
             <properties>
               <horizontalAlignment value="0"/>

@@ -25,7 +25,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="a19f9" class="javax.swing.JButton" binding="trangChủButton" default-binding="true">
+              <component id="a19f9" class="javax.swing.JButton" binding="homeButton">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -33,7 +33,7 @@
                   <text value="Trang chủ"/>
                 </properties>
               </component>
-              <component id="5c776" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="5c776" class="javax.swing.JComboBox" binding="selectMonthComboBox">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -70,7 +70,7 @@
                   <text value="Tháng chưa thống kê"/>
                 </properties>
               </component>
-              <component id="cb0b4" class="javax.swing.JButton" binding="thánh11Button" default-binding="true">
+              <component id="cb0b4" class="javax.swing.JButton" binding="firstMonthButton">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -86,7 +86,7 @@
                   <text value="Tháng đã thống kê gần đây"/>
                 </properties>
               </component>
-              <component id="84d16" class="javax.swing.JButton" binding="tháng10Button" default-binding="true">
+              <component id="84d16" class="javax.swing.JButton" binding="secondMonthButton">
                 <constraints>
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -94,7 +94,7 @@
                   <text value="Tháng 10"/>
                 </properties>
               </component>
-              <component id="4dd21" class="javax.swing.JButton" binding="tháng9Button" default-binding="true">
+              <component id="4dd21" class="javax.swing.JButton" binding="thirdMonthButton">
                 <constraints>
                   <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -102,7 +102,7 @@
                   <text value="Tháng 9"/>
                 </properties>
               </component>
-              <component id="c6640" class="javax.swing.JButton" binding="tháng8Button" default-binding="true">
+              <component id="c6640" class="javax.swing.JButton" binding="fourthMonthButton">
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>

@@ -5,5 +5,4 @@ import javax.swing.*;
 public class showDetailWorker {
     private JTable table1;
     private JScrollBar scrollBar1;
-
 }
