@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="40.0" prefHeight="360.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="360.0" prefWidth="210.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Button fx:id="timekeepingInformationButton" layoutX="5.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #30B5FA;" text="Thông tin chấm công" />
+                  <Button fx:id="timekeepingQuestionsButton" layoutX="5.0" layoutY="114.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #30B5FA;" text="Thắc  mắc chấm công" />
+                  <Button fx:id="companyTimekeepingInformationButton" layoutX="5.0" layoutY="164.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #30B5FA;" text="Thông tin chấm công công ty" />
+                  <Button fx:id="unitTimekeepingInformation" layoutX="5.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #30B5FA;" text="Thông tin chấm công đơn vị" />
+                  <Button fx:id="timekeepingStatisticsButton" layoutX="5.0" layoutY="264.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #30B5FA;" text="Thống kê chấm công" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="237.0" layoutY="88.0" prefHeight="185.0" prefWidth="363.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="22.0" text="Thông tin chung">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="116.0" fitWidth="114.0" layoutX="229.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../img/download.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="14.0" layoutY="64.0" text="Họ và tên:" />
+                  <Label layoutX="14.0" layoutY="84.0" text="Vai trò:" />
+                  <Label layoutX="14.0" layoutY="104.0" text="Đơn vị:" />
+                  <Label layoutX="80.0" layoutY="64.0" text="Bùi Đăng Đức">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="80.0" layoutY="84.0" text="Nhân viên văn phòng" />
+                  <Label layoutX="80.0" layoutY="104.0" text="IT" />
+                  <Label layoutX="240.0" layoutY="140.0" text="ID:" />
+                  <Label layoutX="270.0" layoutY="140.0" text="20204529" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="233.0" layoutY="7.0" prefHeight="24.0" prefWidth="135.0" text="Trang chủ" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Icon content="HOME" layoutX="20.0" layoutY="10.0" prefHeight="24.0" prefWidth="24.0" scaleX="1.5" scaleY="1.5">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.7236841917037964" green="0.30153509974479675" blue="0.30153509974479675" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect></Icon>
+   </children>
+</Pane>
