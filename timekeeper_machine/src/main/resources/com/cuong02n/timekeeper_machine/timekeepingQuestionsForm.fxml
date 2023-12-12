@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Icon fx:id="homeButton" content="HOME" layoutX="40.0" layoutY="30.0" prefHeight="24.0" prefWidth="24.0" scaleX="1.5" scaleY="1.5">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.7236841917037964" green="0.30153509974479675" blue="0.30153509974479675" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Icon>
+      <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="198.0" layoutY="27.0" prefHeight="30.0" prefWidth="224.0" text="Thắc mắc chấm công" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="40.0" prefHeight="360.0" prefWidth="600.0">
+         <children>
+            <ScrollPane layoutY="25.0" prefHeight="335.0" prefWidth="600.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="593.0">
+                     <children>
+                        <TableView prefHeight="320.0" prefWidth="962.0">
+                          <columns>
+                            <TableColumn prefWidth="55.0" text="STT" />
+                            <TableColumn prefWidth="137.0" text="Mã NV" />
+                              <TableColumn prefWidth="102.0" text="Vai trò" />
+                              <TableColumn prefWidth="119.0" text="Đơn vị" />
+                              <TableColumn prefWidth="88.0" text="Email" />
+                              <TableColumn prefWidth="156.0" text="Thời gian gửi" />
+                              <TableColumn prefWidth="22.0" text="Nội dung" />
+                              <TableColumn minWidth="0.0" prefWidth="202.0" text="Đã xử lý" />
+                              <TableColumn minWidth="0.0" text="Đã gửi phản hồi" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
