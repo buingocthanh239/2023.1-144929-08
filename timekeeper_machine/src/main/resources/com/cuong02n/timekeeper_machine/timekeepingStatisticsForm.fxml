@@ -38,15 +38,15 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="166.0" prefHeight="360.0" prefWidth="434.0">
+            <AnchorPane layoutX="166.0" prefHeight="326.0" prefWidth="434.0">
                <children>
-                  <TabPane layoutX="5.0" layoutY="19.0" prefHeight="332.0" prefWidth="421.0" style="-fx-background-color: #A8E1FF;" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutX="7.0" layoutY="14.0" prefHeight="307.0" prefWidth="421.0" style="-fx-background-color: #A8E1FF;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab fx:id="workerTabPane" text="Công nhân">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView layoutX="9.0" layoutY="2.0" prefHeight="300.0" prefWidth="404.0">
+                                    <TableView layoutX="9.0" layoutY="2.0" prefHeight="242.0" prefWidth="404.0">
                                       <columns>
                                         <TableColumn prefWidth="75.0" text="Mã NV" />
                                         <TableColumn prefWidth="75.0" text="Họ và tên" />
@@ -63,7 +63,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView layoutX="9.0" layoutY="2.0" prefHeight="300.0" prefWidth="404.0">
+                                    <TableView layoutX="9.0" layoutY="2.0" prefHeight="236.0" prefWidth="404.0">
                                        <columns>
                                           <TableColumn prefWidth="46.0" text="Mã NV" />
                                           <TableColumn prefWidth="63.0" text="Họ và tên" />
@@ -78,6 +78,13 @@
                       </Tab>
                     </tabs>
                   </TabPane>
+                  <AnchorPane layoutX="123.0" layoutY="313.0" prefHeight="47.0" prefWidth="297.0">
+                     <children>
+                        <Label layoutX="35.0" layoutY="17.0" prefHeight="18.0" prefWidth="154.0" text="Xuất báo cáo chấm công:" />
+                        <Button fx:id="exportCSVButton" layoutX="195.0" layoutY="11.0" mnemonicParsing="false" scaleX="0.5" scaleY="0.5" text="CSV" />
+                        <Button fx:id="exportExcelButton" layoutX="233.0" layoutY="11.0" mnemonicParsing="false" scaleX="0.5" scaleY="0.5" text="EXCEL" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
