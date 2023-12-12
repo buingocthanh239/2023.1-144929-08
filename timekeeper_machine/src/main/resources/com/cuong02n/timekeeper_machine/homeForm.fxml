@@ -19,11 +19,11 @@
          <children>
             <AnchorPane prefHeight="360.0" prefWidth="210.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Button fx:id="timekeepingInformationButton" layoutX="5.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #A8E1FF;" text="Thông tin chấm công" />
-                  <Button fx:id="timekeepingQuestionsButton" layoutX="5.0" layoutY="114.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #A8E1FF;" text="Thắc  mắc chấm công" />
-                  <Button fx:id="companyTimekeepingInformationButton" layoutX="5.0" layoutY="164.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #A8E1FF;" text="Thông tin chấm công công ty" />
-                  <Button fx:id="unitTimekeepingInformation" layoutX="5.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #A8E1FF;" text="Thông tin chấm công đơn vị" />
-                  <Button fx:id="timekeepingStatisticsButton" layoutX="5.0" layoutY="264.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #A8E1FF;" text="Thống kê chấm công" />
+                  <Button fx:id="timekeepingInformationButton" layoutX="5.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #1FB2FF;" text="Thông tin chấm công" />
+                  <Button fx:id="timekeepingQuestionsButton" layoutX="5.0" layoutY="114.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #1FB2FF;" text="Thắc  mắc chấm công" />
+                  <Button fx:id="companyTimekeepingInformationButton" layoutX="5.0" layoutY="164.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #1FB2FF;" text="Thông tin chấm công công ty" />
+                  <Button fx:id="unitTimekeepingInformation" layoutX="5.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #1FB2FF;" text="Thông tin chấm công đơn vị" />
+                  <Button fx:id="timekeepingStatisticsButton" layoutX="5.0" layoutY="264.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-radius: 8; -fx-background-color: #1FB2FF;" text="Thống kê chấm công" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="237.0" layoutY="88.0" prefHeight="185.0" prefWidth="363.0">

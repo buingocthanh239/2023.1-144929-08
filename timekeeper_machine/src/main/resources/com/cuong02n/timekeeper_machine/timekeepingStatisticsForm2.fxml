@@ -17,7 +17,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Icon fx:id="homeButton" content="HOME" layoutX="37.0" layoutY="30.0" prefHeight="24.0" prefWidth="24.0" scaleX="1.5" scaleY="1.5">
@@ -47,7 +46,7 @@
             <Label layoutX="14.0" layoutY="27.0" text="Chọn tháng" />
             <Label layoutX="14.0" layoutY="108.0" text="Tháng chưa thống kê" />
             <Button fx:id="firstMonthUnreportButton" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #A8E1FF;" text="Tháng 11" />
-            <Label layoutX="14.0" layoutY="217.0" text="Tháng đã thống kê gần đây" />
+            <Label layoutX="14.0" layoutY="217.0" text="Tháng thống kê gần đây" />
             <Button fx:id="firstMonthRecentButton" layoutX="14.0" layoutY="242.0" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #A8E1FF;" text="Tháng 10" />
             <Button fx:id="secondMonthRecentButton" layoutX="14.0" layoutY="276.0" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #A8E1FF;" text="Tháng 9" />
             <ImageView fx:id="flagIcon" blendMode="MULTIPLY" fitHeight="25.0" fitWidth="36.0" layoutX="96.0" layoutY="131.0">
@@ -57,21 +56,21 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <BorderPane layoutX="167.0" layoutY="60.0" prefHeight="340.0" prefWidth="432.0">
+      <BorderPane layoutX="163.0" layoutY="60.0" prefHeight="340.0" prefWidth="416.0">
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView prefHeight="300.0" prefWidth="411.0" style="-fx-background-color: #A8E1FF;" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="53.0" text="Mã NV" />
                 <TableColumn prefWidth="74.0" text="Họ và tên" />
                   <TableColumn prefWidth="98.0" text="Vai trò" />
-                  <TableColumn prefWidth="75.0" text="Đơn vị" />
-                  <TableColumn prefWidth="51.0" text="Tháng" />
+                  <TableColumn prefWidth="54.0" text="Đơn vị" />
+                  <TableColumn prefWidth="54.0" text="Tháng" />
                   <TableColumn prefWidth="79.0" text="Thông tin" />
               </columns>
             </TableView>
          </center>
          <top>
-            <AnchorPane prefHeight="30.0" prefWidth="432.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="30.0" prefWidth="430.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="exportReportButton" layoutX="341.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #A8E1FF;" text="Xuất thống kê" />
                   <Label layoutX="14.0" layoutY="14.0" text="Thông tin chấm công tổng hợp" />
