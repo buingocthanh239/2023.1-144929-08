@@ -16,7 +16,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="150.0" layoutY="17.0" prefHeight="30.0" prefWidth="301.0" text="Thông tin chấm công đơn vị" textAlignment="CENTER">
@@ -63,12 +62,14 @@
             </AnchorPane>
             <Pane fx:id="unitInformationForm" layoutX="181.0" prefHeight="360.0" prefWidth="420.0">
                <children>
-                  <TableView layoutY="21.0" prefHeight="339.0" prefWidth="420.0" style="-fx-background-color: #A8E1FF;">
+                  <TableView layoutY="48.0" prefHeight="312.0" prefWidth="420.0" style="-fx-background-color: #A8E1FF;">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
+                  <ChoiceBox fx:id="monthChoicebox" layoutX="359.0" layoutY="22.0" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: #A8E1FF;" />
+                  <Label layoutX="284.0" layoutY="26.0" text="Chọn tháng" />
                </children>
             </Pane>
          </children>

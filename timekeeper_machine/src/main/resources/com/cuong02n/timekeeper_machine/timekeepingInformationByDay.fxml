@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="192.0" layoutY="27.0" prefHeight="30.0" prefWidth="236.0" text="Thông tin chấm công" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Icon fx:id="homeButton" content="HOME" layoutX="40.0" layoutY="30.0" prefHeight="24.0" prefWidth="24.0">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.7236841917037964" green="0.30153509974479675" blue="0.30153509974479675" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Icon>
+      <AnchorPane layoutX="17.0" layoutY="88.0" prefHeight="304.0" prefWidth="569.0">
+         <children>
+            <ScrollPane prefHeight="304.0" prefWidth="569.0" style="-fx-background-color: #A8E1FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="556.0" prefWidth="550.0">
+                     <children>
+                        <TableView prefHeight="292.0" prefWidth="537.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Ngày" />
+                            <TableColumn prefWidth="155.0" text="Giờ chấm công" />
+                              <TableColumn prefWidth="114.0" text="Máy" />
+                              <TableColumn prefWidth="85.0" text="Trạng thái" />
+                              <TableColumn prefWidth="107.0" text="Hành động" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="434.0" layoutY="61.0" text="Chọn tháng:" />
+      <ChoiceBox fx:id="monthChoicebox" layoutX="505.0" layoutY="57.0" prefHeight="16.0" prefWidth="59.0" style="-fx-background-color: #A8E1FF;" />
+   </children>
+</Pane>

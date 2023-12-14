@@ -39,7 +39,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <AnchorPane layoutY="30.0" prefHeight="369.0" prefWidth="189.0">
+      <AnchorPane layoutY="30.0" prefHeight="369.0" prefWidth="169.0">
          <children>
             <Label layoutX="26.0" layoutY="38.0" text="Đơn vị:">
                <font>
@@ -48,9 +48,9 @@
             </Label>
             <Label layoutX="26.0" layoutY="119.0" prefHeight="18.0" prefWidth="163.0" text="Thông tin chấm công:" wrapText="true" />
             <ChoiceBox fx:id="unitChoiceBox" layoutX="89.0" layoutY="38.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #A8E1FF;" />
-            <Button fx:id="monthButton" layoutX="68.0" layoutY="150.0" mnemonicParsing="false" text="Tháng" />
-            <Button fx:id="quarterButton" layoutX="68.0" layoutY="203.0" mnemonicParsing="false" text="Quý" />
-            <Button layoutX="68.0" layoutY="254.0" mnemonicParsing="false" text="Năm" />
+            <Button fx:id="monthButton" layoutX="62.0" layoutY="151.0" mnemonicParsing="false" text="Tháng" />
+            <Button fx:id="quarterButton" layoutX="62.0" layoutY="205.0" mnemonicParsing="false" text="Quý" />
+            <Button layoutX="62.0" layoutY="254.0" mnemonicParsing="false" text="Năm" />
             <ImageView fx:id="flagIcon" blendMode="MULTIPLY" fitHeight="25.0" fitWidth="36.0" layoutX="121.0" layoutY="153.0">
                <image>
                   <Image url="@../../../img/muiten.png" />
@@ -60,9 +60,9 @@
       </AnchorPane>
       <AnchorPane layoutX="168.0" layoutY="54.0" prefHeight="346.0" prefWidth="432.0">
          <children>
-            <ChoiceBox layoutX="364.0" layoutY="8.0" prefHeight="25.0" prefWidth="54.0" />
+            <ChoiceBox fx:id="monthChoicebox" layoutX="372.0" layoutY="8.0" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: #A8E1FF;" />
             <Label layoutX="297.0" layoutY="12.0" text="Chọn tháng" />
-            <TableView layoutY="33.0" prefHeight="312.0" prefWidth="432.0">
+            <TableView layoutY="33.0" prefHeight="312.0" prefWidth="432.0" style="-fx-background-color: #A8E1FF;">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
