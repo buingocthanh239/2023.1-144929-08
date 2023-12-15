@@ -9,9 +9,8 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
-
     @FXML
-    private void onLoginButtonClick(ActionEvent event) {
-
+    public void test(){
+        System.out.println("ok");
     }
 }
