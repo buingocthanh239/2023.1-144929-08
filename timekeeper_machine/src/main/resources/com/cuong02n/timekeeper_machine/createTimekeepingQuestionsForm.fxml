@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.createTimekeepingQuestionsController">
    <children>
       <AnchorPane prefHeight="229.0" prefWidth="400.0">
          <children>
             <TextField fx:id="questionContentField" layoutX="18.0" layoutY="38.0" prefHeight="183.0" prefWidth="368.0" />
-            <Label layoutX="18.0" layoutY="14.0" text="Nhập thắc mắc:">
+            <Label layoutX="18.0" layoutY="14.0" text="Nhập thắc mắc:" textFill="#3c3744">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Label>
          </children>
       </AnchorPane>
-      <Button fx:id="comfirmCreateQuestionButton" layoutX="157.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #1FB2FF;" text="Gửi" textFill="WHITE" />
+      <Button fx:id="comfirmCreateQuestionButton" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickComfirmCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Gửi" textAlignment="CENTER" textFill="#fbfff1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <effect>
+            <DropShadow height="12.0" offsetX="1.0" offsetY="1.0" radius="5.5" width="12.0">
+               <color>
+                  <Color red="0.5526315569877625" green="0.5526315569877625" blue="0.5526315569877625" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="closeCreateQuestionButton" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickcCloseCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Đóng" textAlignment="CENTER" textFill="#fbfff1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <effect>
+            <DropShadow height="12.0" offsetX="1.0" offsetY="1.0" radius="5.5" width="12.0">
+               <color>
+                  <Color red="0.5526315569877625" green="0.5526315569877625" blue="0.5526315569877625" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
    </children>
 </Pane>

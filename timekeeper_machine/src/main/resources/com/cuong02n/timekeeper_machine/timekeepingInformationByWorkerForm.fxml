@@ -1,86 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.timekeepingInformationByWorkerController">
    <children>
-      <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="182.0" layoutY="17.0" prefHeight="30.0" prefWidth="236.0" text="Thông tin chấm công" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Icon fx:id="homeButton" content="HOME" layoutX="30.0" layoutY="20.0" prefHeight="24.0" prefWidth="24.0">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.7236841917037964" green="0.30153509974479675" blue="0.30153509974479675" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
-      </Icon>
-      <AnchorPane layoutY="41.0" prefHeight="360.0" prefWidth="144.0">
+      <AnchorPane layoutY="50.0" prefHeight="550.0" prefWidth="200.0">
          <children>
-            <Label layoutX="16.0" layoutY="46.0" text="Chọn tháng:">
+            <Label layoutX="10.0" layoutY="46.0" text="Chọn tháng:" textFill="#3c3744">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="monthChoicebox" layoutX="16.0" layoutY="80.0" prefHeight="26.0" prefWidth="112.0" style="-fx-background-color: #A8E1FF;" />
-            <Button fx:id="showdetailTimekeepingInformationByDayButton" layoutX="14.0" layoutY="241.0" mnemonicParsing="false" text="Chi tiết theo ngày" />
+            <ChoiceBox fx:id="monthChoicebox" layoutX="10.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;" />
+            <Pane layoutX="197.0" prefHeight="550.0" prefWidth="3.0" style="-fx-background-color: #3c3744;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="144.0" layoutY="63.0" prefHeight="337.0" prefWidth="457.0">
+      <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0">
          <children>
-            <TableView layoutX="12.0" prefHeight="145.0" prefWidth="436.0" style="-fx-background-color: #A8E1FF;">
+            <Label layoutX="10.0" layoutY="170.0" text="Thông tin chấm công tổng hơp" textFill="#3c3744" />
+            <Pane layoutX="100.0" layoutY="14.0" prefHeight="120.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #b4c5e4;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="50.0" prefHeight="60.0" prefWidth="200.0" text="185" textAlignment="CENTER" textFill="#3c3744">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="50.0" prefHeight="60.0" prefWidth="200.0" text="10" textAlignment="CENTER" textFill="#3c3744">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" prefHeight="60.0" prefWidth="200.0" text="Tổng số giờ tăng ca" textAlignment="CENTER" textFill="#3c3744">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="200.0" text="Tổng số giờ làm việc" textAlignment="CENTER" textFill="#3c3744">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TableView fx:id="timekeepingInformationWorkerTableview" layoutX="10.0" layoutY="200.0" prefHeight="340.0" prefWidth="580.0" style="-fx-background-color: #b4c5e4;">
               <columns>
-                <TableColumn prefWidth="208.0" text="Tổng số giờ làm" />
-                <TableColumn minWidth="0.0" prefWidth="227.0" text="Tổng số giờ tăng ca" />
+                <TableColumn fx:id="dayCol" prefWidth="164.0" text="Ngày" />
+                <TableColumn fx:id="shift1Col" prefWidth="92.0" text="Ca 1" />
+                  <TableColumn fx:id="shift2Col" minWidth="0.0" prefWidth="70.0" text="Ca 2" />
+                  <TableColumn fx:id="shift3Col" minWidth="0.0" prefWidth="86.0" text="Ca 3" />
+                  <TableColumn fx:id="showDetailCol" minWidth="0.0" prefWidth="167.0" text="Xem chi tiết" />
               </columns>
             </TableView>
-            <Label layoutX="14.0" layoutY="151.0" text="Thông tin chấm công thổng hơp" />
-            <ScrollPane layoutX="14.0" layoutY="169.0" prefHeight="163.0" prefWidth="436.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="760.0">
-                     <children>
-                        <TableView prefHeight="150.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="Ngày" />
-                            <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                              <TableColumn prefWidth="75.0" text="T2(1-1-1998)" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="50.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="260.0" layoutY="5.0" text="Thông tin chấm công" textFill="#3c3744">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0">
+               <image>
+                  <Image url="@../../../img/homeImg.png" />
+               </image>
+            </ImageView>
+            <Pane layoutY="47.0" prefHeight="3.0" prefWidth="800.0" style="-fx-background-color: #3c3744;" />
          </children>
       </AnchorPane>
    </children>

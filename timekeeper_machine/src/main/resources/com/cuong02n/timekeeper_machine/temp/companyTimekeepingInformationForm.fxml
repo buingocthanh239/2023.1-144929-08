@@ -53,7 +53,7 @@
             <Button layoutX="62.0" layoutY="254.0" mnemonicParsing="false" text="Năm" />
             <ImageView fx:id="flagIcon" blendMode="MULTIPLY" fitHeight="25.0" fitWidth="36.0" layoutX="121.0" layoutY="153.0">
                <image>
-                  <Image url="@../../../img/muiten.png" />
+                  <Image url="@../../../../img/muiten.png" />
                </image>
             </ImageView>
          </children>

@@ -33,7 +33,7 @@
                   <Button fx:id="secondMonthRecentButton" layoutX="14.0" layoutY="276.0" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #A8E1FF;" text="Tháng 9" />
                   <ImageView fx:id="flagIcon" blendMode="MULTIPLY" fitHeight="25.0" fitWidth="36.0" layoutX="96.0" layoutY="242.0">
                      <image>
-                        <Image url="@../../../img/muiten.png" />
+                        <Image url="@../../../../img/muiten.png" />
                      </image>
                   </ImageView>
                </children>

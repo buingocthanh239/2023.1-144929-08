@@ -9,44 +9,44 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.LoginFormController">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="196.0" fitWidth="243.0" layoutX="16.0" layoutY="109.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/eb9807c21b988ba4848ae5da8c9e4cbf.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane fx:controller="com.cuong02n.timekeeper_machine.view_controller.LoginFormController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="345.0" prefWidth="341.0" style="-fx-background-color: #fbfff1;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="147.0" fitWidth="331.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/Thiết%20kế%20chưa%20có%20tênAAAAAAAA.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="168.0" text="Mã nhân viên">
+            <Label layoutX="33.0" layoutY="172.0" text="Mã nhân viên" textFill="#3c3744">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="idField" layoutX="143.0" layoutY="168.0" prefHeight="25.0" prefWidth="170.0" promptText="1235678" />
-            <Label layoutX="48.0" layoutY="215.0" text="Mật khẩu">
+            <TextField fx:id="idField" layoutX="143.0" layoutY="172.0" prefHeight="25.0" prefWidth="170.0" promptText="1235678" />
+            <Label layoutX="61.0" layoutY="219.0" text="Mật khẩu" textFill="#3c3744">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="passWordField" layoutX="143.0" layoutY="215.0" prefHeight="25.0" prefWidth="170.0" promptText="********" />
-            <Button fx:id="loginButton" layoutX="126.0" layoutY="277.0" mnemonicParsing="false" onAction="#onClickLoginButton" style="-fx-background-color: #1FB2FF;" text="Đăng nhập" textFill="WHITE">
+            <TextField fx:id="passWordField" layoutX="143.0" layoutY="219.0" prefHeight="25.0" prefWidth="170.0" promptText="********" />
+            <Button fx:id="loginButton" layoutX="188.0" layoutY="275.0" mnemonicParsing="false" onAction="#onClickLoginButton" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Đăng nhập" textFill="#fbfff1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="178.0" layoutY="42.0">
+               <image>
+                  <Image url="@../../../img/bv.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="238.0" style="-fx-background-color: #fbfff1;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="158.0" fitWidth="200.0" layoutX="19.0" layoutY="121.0">
+               <image>
+                  <Image url="@../../../img/timekeepingImg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>
