@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:controller="com.cuong02n.timekeeper_machine.view_controller.showDetailTimekeepingInformationByDayWorkerController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.showDetailTimekeepingInformationByDayWorkerController">
    <children>
       <Label layoutX="228.0" layoutY="10.0" text="Bản ghi chấm công" textFill="#3c3744">
          <font>
@@ -52,11 +52,11 @@
             <Label layoutX="517.0" layoutY="154.0" text="10:00" textFill="#3c3744" />
          </children>
       </AnchorPane>
-      <Button fx:id="closeButton" layoutX="400.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClickCloseButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Đóng" textFill="#fbfff1">
+      <Button fx:id="closeButton" layoutX="500.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClickCloseButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Đóng" textFill="#fbfff1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding></Button>
-      <Button fx:id="complainButton" layoutX="500.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClickComplainButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Khiếu nại" textFill="#fbfff1">
+      <Button fx:id="complainButton" layoutX="394.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClickComplainButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Khiếu nại" textFill="#fbfff1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding></Button>
