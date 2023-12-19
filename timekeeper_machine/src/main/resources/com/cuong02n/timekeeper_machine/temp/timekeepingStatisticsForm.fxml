@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -37,24 +35,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0">
-         <children>
-            <TabPane layoutX="102.0" layoutY="-1.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
-            <TabPane layoutX="202.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Untitled Tab 1">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Untitled Tab 2">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-         </children>
-      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0" />
    </children>
 </Pane>
