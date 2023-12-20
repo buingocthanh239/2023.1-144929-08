@@ -3,6 +3,7 @@ package com.cuong02n.timekeeper_machine.view_controller;
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
 import com.cuong02n.timekeeper_machine.model.Action;
+import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;

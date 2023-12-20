@@ -1,4 +1,4 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.model;
 
 import com.cuong02n.timekeeper_machine.DateUtil;
 import javafx.beans.property.SimpleDoubleProperty;
