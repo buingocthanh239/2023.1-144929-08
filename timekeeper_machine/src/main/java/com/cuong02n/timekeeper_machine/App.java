@@ -1,5 +1,6 @@
 package com.cuong02n.timekeeper_machine;
 
+import com.cuong02n.timekeeper_machine.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import java.io.IOException;
 
 public class App extends Application {
     public static Stage stg;
+    public static User user = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -21,7 +23,6 @@ public class App extends Application {
         stage.show();
     }
     public static void main(String[] args) {
-//        launch();
-        
+        launch();
     }
 }

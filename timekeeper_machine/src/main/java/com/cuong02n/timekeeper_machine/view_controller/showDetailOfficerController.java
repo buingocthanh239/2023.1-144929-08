@@ -1,6 +1,7 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +21,15 @@ import java.util.ResourceBundle;
 import static com.cuong02n.timekeeper_machine.App.stg;
 
 public class showDetailOfficerController implements Initializable {
-    public TableView<examInformationOfficeDB> timekeepingInformationOfficerTableview;
-    public TableColumn<examInformationOfficeDB, String> dayCol;
-    public TableColumn<examInformationOfficeDB, String> morningCol;
-    public TableColumn<examInformationOfficeDB, String> afternoonCol;
-    public TableColumn<examInformationOfficeDB, Double> timeLateCol;
-    public TableColumn<examInformationOfficeDB, Double> timeEarlyCol;
+    public TableView<InformationOfficeModel> timekeepingInformationOfficerTableview;
+    public TableColumn<InformationOfficeModel, String> dayCol;
+    public TableColumn<InformationOfficeModel, String> morningCol;
+    public TableColumn<InformationOfficeModel, String> afternoonCol;
+    public TableColumn<InformationOfficeModel, Double> timeLateCol;
+    public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
 
 
-    public TableColumn<examInformationOfficeDB, Void> showDetailCol;
+    public TableColumn<InformationOfficeModel, Void> showDetailCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,7 +56,7 @@ public class showDetailOfficerController implements Initializable {
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        examInformationOfficeDB rowData = getTableView().getItems().get(getIndex());
+                        InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
                         try {
                             showDetail(rowData);
                         } catch (IOException e) {
@@ -65,7 +66,7 @@ public class showDetailOfficerController implements Initializable {
                 }
             }
 
-            private void showDetail(examInformationOfficeDB rowData) throws IOException {
+            private void showDetail(InformationOfficeModel rowData) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeHMRForm.fxml"));
                 stg.setScene(new Scene(fxmlLoader.load()));
             }
@@ -74,7 +75,7 @@ public class showDetailOfficerController implements Initializable {
         timekeepingInformationOfficerTableview.setItems(observableList);
     }
 
-    ObservableList<examInformationOfficeDB> observableList = FXCollections.observableArrayList(
-            new examInformationOfficeDB("1/1/2023", "có", "không",0,0)
+    ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
+            new InformationOfficeModel("1/1/2023", "có", "không",0,0)
     );
 }

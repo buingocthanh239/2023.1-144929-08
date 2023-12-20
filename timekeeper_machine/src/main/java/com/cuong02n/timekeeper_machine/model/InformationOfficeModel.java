@@ -1,24 +1,52 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.model;
 
+import com.cuong02n.timekeeper_machine.DateUtil;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class examInformationOfficeDB {
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalTime;
+
+public class InformationOfficeModel {
+
     private SimpleStringProperty day;
     private SimpleStringProperty morning;
     private SimpleStringProperty afternoon;
     private SimpleDoubleProperty timeLate;
     private SimpleDoubleProperty timeEarly;
 
-    public examInformationOfficeDB(String day, String morning, String afternoon, double timeLate, double timeEarly) {
+    public InformationOfficeModel(String day, String morning, String afternoon, double timeLate, double timeEarly) {
         this.day = new SimpleStringProperty(day);
         this.morning = new SimpleStringProperty(morning);
         this.afternoon = new SimpleStringProperty(afternoon);
         this.timeLate = new SimpleDoubleProperty(timeLate);
         this.timeEarly = new SimpleDoubleProperty(timeEarly);
     }
+    public InformationOfficeModel(Timestamp start,Timestamp end){
+        boolean workInMorning = DateUtil.isMorning(start);
+        System.out.println("start = "+start);
+        boolean workInAfternoon = !DateUtil.isMorning(end);
+        System.out.println("end = "+end);
+        long late = 0L;
+        long early = 0L;
+        if(workInMorning){
+            late += DateUtil.morningLate(start);
+            early += DateUtil.morningEarly(end);
+        }
 
-    public examInformationOfficeDB() {
+        if(workInAfternoon){
+            late +=DateUtil.afternoonLate(start);
+            early += DateUtil.afternoonEarly(end);
+        }
+        this.day = new SimpleStringProperty(String.valueOf(start.toLocalDateTime().toLocalDate()));
+        this.morning = new SimpleStringProperty(String.valueOf(workInMorning));
+        this.afternoon = new SimpleStringProperty(String.valueOf(workInAfternoon));
+        this.timeLate = new SimpleDoubleProperty(late/60.0/60);
+        this.timeEarly = new SimpleDoubleProperty(early/60.0/60);
+    }
+
+    public InformationOfficeModel() {
 
     }
 

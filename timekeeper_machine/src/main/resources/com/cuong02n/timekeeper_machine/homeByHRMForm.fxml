@@ -95,7 +95,7 @@
                         </DropShadow>
                      </effect>
                   </ImageView>
-                  <Label layoutX="15.0" layoutY="145.0" text="Họ và tên:" textFill="#3c3744">
+                  <Label  layoutX="15.0" layoutY="145.0" text="Họ và tên:" textFill="#3c3744">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -110,7 +110,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="145.0" text="Bùi Đăng Đức" textFill="#3c3744">
+                  <Label fx:id="fullNameLabel" layoutX="103.0" layoutY="145.0" text="Bùi Đăng Đức" textFill="#3c3744">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -120,7 +120,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="225.0" text="IT" textFill="#3c3744">
+                  <Label fx:id="roomLabel" layoutX="103.0" layoutY="225.0" text="IT" textFill="#3c3744">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="358.0" layoutY="294.0" text="20204529" textFill="#3c3744">
+                  <Label fx:id="idLabel" layoutX="358.0" layoutY="294.0" text="20204529" textFill="#3c3744">
                      <font>
                         <Font size="16.0" />
                      </font>
