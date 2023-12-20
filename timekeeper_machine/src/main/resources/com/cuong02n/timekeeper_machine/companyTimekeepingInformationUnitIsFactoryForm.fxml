@@ -65,6 +65,7 @@
                   <DropShadow height="8.0" offsetX="1.0" offsetY="1.0" radius="3.5" width="8.0" />
                </effect>
             </ImageView>
+            <Pane prefHeight="550.0" prefWidth="3.0" style="-fx-background-color: #3c3744;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0">

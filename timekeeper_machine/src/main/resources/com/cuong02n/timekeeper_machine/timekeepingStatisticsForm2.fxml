@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.timekeepingStatisticsController">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="263.0" layoutY="5.0" text="Thống kê chấm công" textFill="#3c3744">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0">
+               <image>
+                  <Image url="@../../../img/homeImg.png" />
+               </image>
+            </ImageView>
+            <Pane layoutY="47.0" prefHeight="3.0" prefWidth="800.0" style="-fx-background-color: #3c3744;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="50.0" prefHeight="550.0" prefWidth="200.0">
+         <children>
+            <ChoiceBox fx:id="monthChoicebox" layoutX="108.0" layoutY="68.0" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;" />
+            <Label layoutX="19.0" layoutY="70.0" text="Chọn tháng" textFill="#3c3744">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="550.0" prefWidth="3.0" style="-fx-background-color: #3c3744;" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0">
+         <children>
+            <TableView layoutX="10.0" layoutY="80.0" prefHeight="457.0" prefWidth="580.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Mã NV" />
+                <TableColumn prefWidth="144.0" text="Họ và tên" />
+                  <TableColumn prefWidth="111.0" sortable="false" text="Vai trò" />
+                  <TableColumn prefWidth="105.0" text="Đơn vị" />
+                  <TableColumn minWidth="100.0" prefWidth="144.0" resizable="false" text="Thông tin" />
+              </columns>
+            </TableView>
+            <Label layoutX="10.0" layoutY="58.0" text="Thông tin chấm công tổng hợp" textFill="#3c3744" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

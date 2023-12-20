@@ -12,7 +12,7 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 public class LoginFormController {
     @FXML
     public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("homeByUnitHeadForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("homeByHRMForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
     }
 
