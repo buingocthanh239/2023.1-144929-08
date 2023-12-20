@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:controller="com.cuong02n.timekeeper_machine.view_controller.HomeByOfficerController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="334.0" layoutY="5.0" text="Trang chủ" textFill="#3c3744">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="50.0" prefHeight="550.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="timekeepingInformationButton" layoutX="10.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Thông tin chấm công" textAlignment="CENTER" textFill="#fbfff1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <effect>
+                  <DropShadow height="12.0" offsetX="1.0" offsetY="1.0" radius="5.5" width="12.0">
+                     <color>
+                        <Color red="0.5526315569877625" green="0.5526315569877625" blue="0.5526315569877625" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="50.0" prefHeight="550.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutX="45.0" layoutY="64.0" prefHeight="422.0" prefWidth="511.0">
+               <children>
+                  <Label layoutX="15.0" layoutY="77.0" text="Thông tin chung" textFill="#3c3744">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="292.0" layoutY="77.0">
+                     <image>
+                        <Image url="@../../../img/download.jpg" />
+                     </image>
+                     <effect>
+                        <DropShadow height="16.0" offsetX="1.0" offsetY="1.0" radius="7.5" width="16.0">
+                           <color>
+                              <Color red="0.23529411852359772" green="0.21568627655506134" blue="0.2666666805744171" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="15.0" layoutY="145.0" text="Họ và tên:" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="185.0" text="Vai trò:" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="225.0" text="Đơn vị:" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="103.0" layoutY="145.0" text="Bùi Đăng Đức" textFill="#3c3744">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="103.0" layoutY="185.0" text="Nhân viên văn phòng" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="103.0" layoutY="225.0" text="IT" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="332.0" layoutY="294.0" text="ID:" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="358.0" layoutY="294.0" text="20204529" textFill="#3c3744">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Pane layoutY="47.0" prefHeight="3.0" prefWidth="800.0" style="-fx-background-color: #3c3744;" />
+   </children>
+</Pane>
