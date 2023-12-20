@@ -1,15 +1,14 @@
 package com.cuong02n.timekeeper_machine.database;
 
+import com.cuong02n.timekeeper_machine.model.Action;
 import com.cuong02n.timekeeper_machine.model.User;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import javafx.scene.chart.PieChart;
 
-import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.Vector;
 
+@SuppressWarnings("all")
 public class HikariConnector implements IDBConnector {
     @Override
     public User getUserById(int id) throws Exception {
@@ -43,6 +42,81 @@ public class HikariConnector implements IDBConnector {
         st.setObject(5,user.getRoomId());
         st.executeUpdate();
     }
+
+    @Override
+    public void insertAction(User user,int type) throws Exception {
+        String sql = """
+                INSERT INTO `timekeeper`.`timekeeping_action` (`user_id`, `action_time`, `type`) 
+                VALUES (?,?,?);
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setInt(1,user.getUserId());
+        st.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
+        st.setInt(3,type);
+        st.executeUpdate();
+    }
+
+    @Override
+    public Vector<Action> getActionByUserId(int id) throws Exception {
+        Vector<Action> actions = new Vector<>();
+        String sql = """
+                SELECT * FROM `timekeeper`.`timekeeping_action` ORDER BY `action_time`;
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+        while(rs.next()){
+            Action action = new Action();
+            action.setActionId(rs.getInt("action_id"));
+            action.setUserId(rs.getInt("user_id"));
+            action.setActionTime(rs.getTimestamp("action_time"));
+            action.setType(rs.getType());
+            actions.add(action);
+        }
+        return actions;
+    }
+
+    @Override
+    public Vector<Action> getTimeDifferentAndUserId(Timestamp start, Timestamp end,int userId) throws Exception {
+        String sql = """
+                SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ? AND user_id = ?
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setTimestamp(1,start);
+        st.setTimestamp(2,end);
+        st.setInt(3,userId);
+        ResultSet rs = st.executeQuery();
+        Vector<Action> actions = new Vector<>();
+        while (rs.next()){
+            Action action = new Action();
+            action.setUserId(rs.getInt("user_id"));
+            action.setActionId(rs.getInt("action_id"));
+            action.setActionTime(rs.getTimestamp("action_time"));
+            action.setType(rs.getInt("type"));
+            actions.add(action);
+        }
+        return actions;
+    }
+    @Override
+    public Vector<Action> getTimeDifferent(Timestamp start, Timestamp end) throws Exception {
+        String sql = """
+                SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ?
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setTimestamp(1,start);
+        st.setTimestamp(2,end);
+        ResultSet rs = st.executeQuery();
+        Vector<Action> actions = new Vector<>();
+        while (rs.next()){
+            Action action = new Action();
+            action.setUserId(rs.getInt("user_id"));
+            action.setActionId(rs.getInt("action_id"));
+            action.setActionTime(rs.getTimestamp("action_time"));
+            action.setType(rs.getInt("type"));
+            actions.add(action);
+        }
+        return actions;
+    }
+
 
     final HikariConfig hikariConfig = new HikariConfig();
     final HikariDataSource hikariDataSource;
