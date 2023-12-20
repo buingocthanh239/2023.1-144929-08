@@ -9,6 +9,8 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.*;
 import java.util.Vector;
 
+import static com.cuong02n.timekeeper_machine.App.user;
+
 @SuppressWarnings("all")
 public class HikariConnector implements IDBConnector {
     @Override
@@ -157,6 +159,20 @@ public class HikariConnector implements IDBConnector {
         System.out.println(requests.size());
         return requests;
     }
+
+    @Override
+    public void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception {
+        String sql = """
+                INSERT INTO `timekeeping_request` (`user_id`, `request_time`, `content`) 
+                VALUES (?,?,?);
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setInt(1, timekeepingRequest.getUserId());
+        st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+        st.setString(3, timekeepingRequest.getContent());
+        st.executeUpdate();
+    }
+
 
     private static HikariConnector instance = null;
 

@@ -20,4 +20,6 @@ public interface IDBConnector {
 
     User verify(String username, String password) throws Exception;
     Vector<TimekeepingRequest> getRequest() throws Exception;
+
+    void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception;
 }
