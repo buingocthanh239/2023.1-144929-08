@@ -1,6 +1,7 @@
 package com.cuong02n.timekeeper_machine.database;
 
 import com.cuong02n.timekeeper_machine.model.Action;
+import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import com.cuong02n.timekeeper_machine.model.User;
 
 import java.sql.Timestamp;
@@ -18,4 +19,5 @@ public interface IDBConnector {
     Vector<Action> getTimeDifferent(Timestamp start, Timestamp end) throws Exception;
 
     User verify(String username, String password) throws Exception;
+    Vector<TimekeepingRequest> getRequest() throws Exception;
 }

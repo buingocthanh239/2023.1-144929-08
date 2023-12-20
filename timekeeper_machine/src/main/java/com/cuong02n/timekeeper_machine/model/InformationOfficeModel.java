@@ -25,12 +25,11 @@ public class InformationOfficeModel {
     }
     public InformationOfficeModel(Timestamp start,Timestamp end){
         boolean workInMorning = DateUtil.isMorning(start);
-        System.out.println("start = "+start);
         boolean workInAfternoon = !DateUtil.isMorning(end);
-        System.out.println("end = "+end);
         long late = 0L;
         long early = 0L;
         if(workInMorning){
+            //TODO: abstract
             late += DateUtil.morningLate(start);
             early += DateUtil.morningEarly(end);
         }

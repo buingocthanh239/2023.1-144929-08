@@ -21,7 +21,7 @@
                </font></Label>
          </children>
       </AnchorPane>
-      <Button fx:id="comfirmCreateQuestionButton" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickComfirmCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Gửi" textAlignment="CENTER" textFill="#fbfff1">
+      <Button fx:id="comfirmCreateQuestionButton" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickConfirmCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Gửi" textAlignment="CENTER" textFill="#fbfff1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -33,7 +33,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="closeCreateQuestionButton" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickcCloseCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Đóng" textAlignment="CENTER" textFill="#fbfff1">
+      <Button fx:id="closeCreateQuestionButton" layoutX="280.0" layoutY="240.0" mnemonicParsing="false" onAction="#onClickCloseCreateQuestionButton" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Đóng" textAlignment="CENTER" textFill="#fbfff1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

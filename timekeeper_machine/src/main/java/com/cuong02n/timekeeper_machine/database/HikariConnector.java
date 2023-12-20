@@ -1,6 +1,7 @@
 package com.cuong02n.timekeeper_machine.database;
 
 import com.cuong02n.timekeeper_machine.model.Action;
+import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import com.cuong02n.timekeeper_machine.model.User;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -134,6 +135,27 @@ public class HikariConnector implements IDBConnector {
             return user;
         }
         return null;
+    }
+
+    @Override
+    public Vector<TimekeepingRequest> getRequest() throws Exception {
+        String sql = """
+                SELECT timekeeping_request.*,`user`.fullname FROM timekeeping_request,`user` WHERE `user`.user_id = timekeeping_request.user_id;
+                """;
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+        Vector<TimekeepingRequest> requests = new Vector<>();
+        while (rs.next()) {
+            TimekeepingRequest action = new TimekeepingRequest();
+            action.setUserId(rs.getInt("user_id"));
+            action.setRequestId(rs.getInt("request_id"));
+            action.setRequestTime(rs.getTimestamp("request_time"));
+            action.setContent(rs.getString("content"));
+            action.setFullName(rs.getString("fullname"));
+            requests.add(action);
+        }
+        System.out.println(requests.size());
+        return requests;
     }
 
     private static HikariConnector instance = null;
