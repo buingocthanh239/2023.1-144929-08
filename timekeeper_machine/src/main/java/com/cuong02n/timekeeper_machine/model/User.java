@@ -1,23 +1,14 @@
 package com.cuong02n.timekeeper_machine.model;
 
-public abstract class User {
-    public enum Role {
-        STAFF(0),
-        WORKER(1),
-        ROOM_MANAGER(2),
-        ADMIN(3);
-        final int id;
-
-        Role(int id) {
-            this.id = id;
-        }
-    }
+public class User {
 
     private int userId;
     private String username;
     private transient String password;
     private String fullName;
-    private Role role;
+
+    private int role; // 0: staff, 1: worker, 2: room_manager, 3:admin
+
     private int roomId;
 
 
@@ -53,11 +44,11 @@ public abstract class User {
         this.fullName = fullName;
     }
 
-    public Role getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -67,5 +58,10 @@ public abstract class User {
 
     public void setRoomId(int roomId) {
         this.roomId = roomId;
+    }
+
+    @Override
+    public String toString() {
+        return getUserId() + " " + getUsername() + " " + getFullName() + " " + getPassword() + " " + getRole()+" "+getRoomId();
     }
 }
