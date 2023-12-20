@@ -22,9 +22,9 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 public class companyTimekeepingInformationUnitIsOfficerController implements Initializable {
 
     @FXML
-    private TableView<examInformationOfficeDB> companyOfficerTableView;
+    private TableView<InformationOfficeModel> companyOfficerTableView;
     @FXML
-    private TableColumn<examInformationOfficeDB, Void> showDetailCol;
+    private TableColumn<InformationOfficeModel, Void> showDetailCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,7 +45,7 @@ public class companyTimekeepingInformationUnitIsOfficerController implements Ini
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        examInformationOfficeDB rowData = getTableView().getItems().get(getIndex());
+                        InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
                         try {
                             showDetail(rowData);
                         } catch (IOException e) {
@@ -55,7 +55,7 @@ public class companyTimekeepingInformationUnitIsOfficerController implements Ini
                 }
             }
 
-            private void showDetail(examInformationOfficeDB rowData) throws IOException {
+            private void showDetail(InformationOfficeModel rowData) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 stg.setScene(scene);
@@ -65,11 +65,11 @@ public class companyTimekeepingInformationUnitIsOfficerController implements Ini
         companyOfficerTableView.setItems(createSampleData());
     }
 
-    private ObservableList<examInformationOfficeDB> createSampleData() {
-        ObservableList<examInformationOfficeDB> data = FXCollections.observableArrayList();
+    private ObservableList<InformationOfficeModel> createSampleData() {
+        ObservableList<InformationOfficeModel> data = FXCollections.observableArrayList();
         // Add sample data, adjust this according to your needs
         for (int i = 1; i <= 5; i++) {
-            data.add(new examInformationOfficeDB());
+            data.add(new InformationOfficeModel());
         }
         return data;
     }

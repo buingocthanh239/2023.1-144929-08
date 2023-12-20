@@ -14,6 +14,8 @@ public interface IDBConnector {
     void insertAction(User user,int type) throws Exception;
     Vector<Action> getActionByUserId(int id) throws Exception;
 
-    Vector<Action> getTimeDifferentAndUserId(Timestamp start, Timestamp end,int userId) throws Exception;
+    Vector<Action> getActionByTimeStampAndUserId(Timestamp start, Timestamp end, int userId) throws Exception;
     Vector<Action> getTimeDifferent(Timestamp start, Timestamp end) throws Exception;
+
+    User verify(String username, String password) throws Exception;
 }

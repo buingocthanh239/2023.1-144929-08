@@ -55,7 +55,7 @@
                </children>
             </Pane>
             <Label layoutX="10.0" layoutY="220.0" text="Thông tin chấm công tổng hơp" textFill="#3c3744" />
-            <TableView fx:id="timekeepingInformationOfficerTableview" layoutX="10.0" layoutY="241.0" prefHeight="299.0" prefWidth="580.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
+            <TableView fx:id="timekeepingInformationOfficerTableView" layoutX="10.0" layoutY="241.0" prefHeight="299.0" prefWidth="580.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
                <columns>
                   <TableColumn fx:id="dayCol" prefWidth="164.0" text="Ngày" />
                   <TableColumn fx:id="morningCol" prefWidth="84.0" text="Sáng" />
