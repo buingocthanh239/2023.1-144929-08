@@ -22,7 +22,7 @@ public class SummarizeInformationOfficer {
     }
 
     public SummarizeInformationOfficer() {
-
+        this(0,0,0,0,"",0);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +17,8 @@ import java.sql.Timestamp;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class createTimekeepingQuestionsController {
+public class CreateTimekeepingQuestionsController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     @FXML
     public Button comfirmCreateQuestionButton;
     @FXML
@@ -29,7 +32,7 @@ public class createTimekeepingQuestionsController {
         timekeepingRequest.setUserId(userId);
         timekeepingRequest.setRequestTime(requestTime);
         timekeepingRequest.setContent(content);
-        HikariConnector.getInstance().insertTimekeepingRequest(timekeepingRequest);
+        idbConnector.insertTimekeepingRequest(timekeepingRequest);
     }
 
     public void onClickCloseCreateQuestionButton(ActionEvent actionEvent) throws IOException {

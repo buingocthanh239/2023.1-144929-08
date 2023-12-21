@@ -1,6 +1,9 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
+import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,19 +22,19 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class timekeepingQuestionsController implements Initializable {
+public class CompanyTimekeepingInformationRoomOfficerController implements Initializable {
+    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
 
     @FXML
-    private TableView<examInformationQuestionDB> timekeepingInformationQuestionTableView;
-
+    private TableView<InformationOfficeModel> companyOfficerTableView;
     @FXML
-    private TableColumn<examInformationQuestionDB, Void> deleteCol;
+    private TableColumn<InformationOfficeModel, Void> showDetailCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        deleteCol.setCellFactory(param -> new TableCell<>() {
-            final Button btn = new Button("Xóa");
+        showDetailCol.setCellFactory(param -> new TableCell<>() {
+            final Button btn = new Button("Mở");
             {
                 // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
@@ -47,9 +50,9 @@ public class timekeepingQuestionsController implements Initializable {
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        examInformationQuestionDB rowData = getTableView().getItems().get(getIndex());
+                        InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
                         try {
-                            deleteRow(rowData);
+                            showDetail(rowData);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -57,22 +60,21 @@ public class timekeepingQuestionsController implements Initializable {
                 }
             }
 
-            private void deleteRow(examInformationQuestionDB rowData) throws IOException {
-                int rowIndex = timekeepingInformationQuestionTableView.getItems().indexOf(rowData);
-                timekeepingInformationQuestionTableView.getItems().remove(rowIndex);
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingQuestionsForm.fxml"));
+            private void showDetail(InformationOfficeModel rowData) throws IOException {
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 stg.setScene(scene);
             }
         });
-        timekeepingInformationQuestionTableView.setItems(createSampleData());
+
+        companyOfficerTableView.setItems(createSampleData());
     }
 
-
-    private ObservableList<examInformationQuestionDB> createSampleData() {
-        ObservableList<examInformationQuestionDB> data = FXCollections.observableArrayList();
-        for (int i = 0; i < 10; i++) {
-            data.add(new examInformationQuestionDB());
+    private ObservableList<InformationOfficeModel> createSampleData() {
+        ObservableList<InformationOfficeModel> data = FXCollections.observableArrayList();
+        // Add sample data, adjust this according to your needs
+        for (int i = 1; i <= 5; i++) {
+            data.add(new InformationOfficeModel());
         }
         return data;
     }

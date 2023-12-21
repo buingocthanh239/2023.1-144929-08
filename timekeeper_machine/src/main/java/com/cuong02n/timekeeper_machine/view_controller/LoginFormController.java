@@ -1,6 +1,7 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.User;
@@ -17,18 +18,17 @@ import java.nio.Buffer;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class LoginFormController {
+public class LoginFormController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     @FXML
     TextField passWordField;
     @FXML
     TextField idField;
-    IDBConnector hikariConnector;
     @FXML
     public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
-        hikariConnector = HikariConnector.getInstance();
         String username = idField.getText();
         String password = passWordField.getText();
-        user = HikariConnector.getInstance().verify(username,password);
+        user = idbConnector.verify(username,password);
         if(user ==null){
             // TODO:
             System.out.println("cannot find user");

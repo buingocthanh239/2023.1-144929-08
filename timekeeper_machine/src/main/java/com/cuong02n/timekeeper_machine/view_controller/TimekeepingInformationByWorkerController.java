@@ -1,6 +1,8 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationWorkerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +22,8 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class showDetailWorkerController implements Initializable {
+public class TimekeepingInformationByWorkerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     public TableView<InformationWorkerModel> timekeepingInformationWorkerTableview;
     public TableColumn<InformationWorkerModel, String> dayCol;
     public TableColumn<InformationWorkerModel, Double> shift1Col;
@@ -73,7 +76,6 @@ public class showDetailWorkerController implements Initializable {
     }
 
     ObservableList<InformationWorkerModel> observableList = FXCollections.observableArrayList(
-            new InformationWorkerModel(null,null)// TODO
+            new InformationWorkerModel(null,null)// todo
     );
 }
-

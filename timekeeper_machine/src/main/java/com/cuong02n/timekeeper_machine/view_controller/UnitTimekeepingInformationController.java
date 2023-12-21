@@ -2,11 +2,11 @@ package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.controller.Calculator;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
-import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +28,9 @@ import java.util.Vector;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class unitTimekeepingInformationController implements Initializable {
+public class UnitTimekeepingInformationController implements Initializable {
+    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     @FXML
     public TableColumn<SummarizeInformationOfficer, Integer> showId;
     @FXML
@@ -84,10 +86,10 @@ public class unitTimekeepingInformationController implements Initializable {
                 }
             });
 
-            int roomId = HikariConnector.getInstance().findRoomIdByUserId(user.getUserId());
-            Vector<Integer> ids = HikariConnector.getInstance().getUserByRoomId(roomId);
+            int roomId = idbConnector.findRoomIdByUserId(user.getUserId());
+            Vector<Integer> ids = idbConnector.getUserByRoomId(roomId);
             Vector<SummarizeInformationOfficer> dataToDisplay = new Vector<>();
-            for(int userId : ids){
+            for (int userId : ids) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.set(Calendar.HOUR, 0);
@@ -95,7 +97,7 @@ public class unitTimekeepingInformationController implements Initializable {
                 calendar.set(Calendar.SECOND, 0);
                 Timestamp start = new Timestamp(calendar.getTimeInMillis());
                 Timestamp end = new Timestamp(System.currentTimeMillis());
-                var actions = HikariConnector.getInstance().getActionByTimeStampAndUserId(start, end, userId);
+                var actions = idbConnector.getActionByTimeStampAndUserId(start, end, userId);
                 dataToDisplay.add(Calculator.getSummarizeInformationOfficer(Calculator.transformDataToDisplayOfficer(actions)));
             }
             companyOfficerTableView.setItems(FXCollections.observableList(dataToDisplay));

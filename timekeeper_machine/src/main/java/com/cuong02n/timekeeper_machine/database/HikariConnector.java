@@ -148,7 +148,7 @@ public class HikariConnector implements IDBConnector {
 
     private static HikariConnector instance = null;
 
-    public static IDBConnector getInstance() {
+    static IDBConnector getInstance() {
         if (instance == null) {
             instance = new HikariConnector();
         }

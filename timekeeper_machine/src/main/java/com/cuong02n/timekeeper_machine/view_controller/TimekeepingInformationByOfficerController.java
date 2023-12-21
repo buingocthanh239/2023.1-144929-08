@@ -2,7 +2,9 @@ package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.controller.Calculator;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.Action;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
@@ -27,7 +29,8 @@ import java.util.Vector;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class timekeepingInformationByOfficerController implements Initializable {
+public class TimekeepingInformationByOfficerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableView;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;
@@ -48,7 +51,7 @@ public class timekeepingInformationByOfficerController implements Initializable 
             calendar.set(Calendar.SECOND, 0);
             Timestamp start = new Timestamp(calendar.getTimeInMillis());
             Timestamp end = new Timestamp(System.currentTimeMillis());
-            actions = HikariConnector.getInstance().getActionByTimeStampAndUserId(start, end, user.getUserId());
+            actions = idbConnector.getActionByTimeStampAndUserId(start, end, user.getUserId());
         } catch (Exception e) {
         }
         morningCol.setCellValueFactory(new PropertyValueFactory<>("morning"));

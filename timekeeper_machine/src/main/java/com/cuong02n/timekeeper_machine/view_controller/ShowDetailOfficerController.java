@@ -1,6 +1,8 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +22,8 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class showDetailOfficerController implements Initializable {
+public class ShowDetailOfficerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableview;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;

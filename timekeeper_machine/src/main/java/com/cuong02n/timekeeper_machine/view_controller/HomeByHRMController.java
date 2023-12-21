@@ -1,6 +1,8 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,8 @@ import java.io.IOException;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class HomeByHRMController {
+public class HomeByHRMController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
     @FXML
     public Button timekeepingInformationButton;
     @FXML

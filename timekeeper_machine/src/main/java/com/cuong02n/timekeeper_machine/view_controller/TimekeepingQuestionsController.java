@@ -1,7 +1,8 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,17 +21,20 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class CompanyTimekeepingInformationUnitIsOfficerController implements Initializable {
+public class TimekeepingQuestionsController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+
 
     @FXML
-    private TableView<InformationOfficeModel> companyOfficerTableView;
+    private TableView<examInformationQuestionDB> timekeepingInformationQuestionTableView;
+
     @FXML
-    private TableColumn<InformationOfficeModel, Void> showDetailCol;
+    private TableColumn<examInformationQuestionDB, Void> deleteCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showDetailCol.setCellFactory(param -> new TableCell<>() {
-            final Button btn = new Button("Mở");
+
+        deleteCol.setCellFactory(param -> new TableCell<>() {
+            final Button btn = new Button("Xóa");
             {
                 // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
@@ -46,9 +50,9 @@ public class CompanyTimekeepingInformationUnitIsOfficerController implements Ini
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
+                        examInformationQuestionDB rowData = getTableView().getItems().get(getIndex());
                         try {
-                            showDetail(rowData);
+                            deleteRow(rowData);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -56,21 +60,22 @@ public class CompanyTimekeepingInformationUnitIsOfficerController implements Ini
                 }
             }
 
-            private void showDetail(InformationOfficeModel rowData) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
+            private void deleteRow(examInformationQuestionDB rowData) throws IOException {
+                int rowIndex = timekeepingInformationQuestionTableView.getItems().indexOf(rowData);
+                timekeepingInformationQuestionTableView.getItems().remove(rowIndex);
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingQuestionsForm.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 stg.setScene(scene);
             }
         });
-
-        companyOfficerTableView.setItems(createSampleData());
+        timekeepingInformationQuestionTableView.setItems(createSampleData());
     }
 
-    private ObservableList<InformationOfficeModel> createSampleData() {
-        ObservableList<InformationOfficeModel> data = FXCollections.observableArrayList();
-        // Add sample data, adjust this according to your needs
-        for (int i = 1; i <= 5; i++) {
-            data.add(new InformationOfficeModel());
+
+    private ObservableList<examInformationQuestionDB> createSampleData() {
+        ObservableList<examInformationQuestionDB> data = FXCollections.observableArrayList();
+        for (int i = 0; i < 10; i++) {
+            data.add(new examInformationQuestionDB());
         }
         return data;
     }
