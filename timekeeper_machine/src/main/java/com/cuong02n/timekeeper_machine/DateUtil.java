@@ -13,6 +13,16 @@ public class DateUtil {
     public static LocalTime startAfternoon = LocalTime.of(13, 0);
     public static LocalTime endAfternoon = LocalTime.of(17, 0);
 
+
+    public static LocalTime shift1Start = LocalTime.of(6,0);
+    public static LocalTime shift2Start = LocalTime.of(10,0);
+    public static LocalTime shift3Start = LocalTime.of(14,0);
+    public static LocalTime shift3End = LocalTime.of(18,0);
+
+    public static long getShift1Work(Timestamp start,Timestamp end){
+        return 0L;
+    }
+//    if(shift1)
     public static boolean isMorning(Timestamp timestamp) {
         LocalTime time = timestamp.toLocalDateTime().toLocalTime();
         return time.isBefore(LocalTime.of(12, 30));

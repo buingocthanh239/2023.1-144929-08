@@ -33,10 +33,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public void insertUser(User user) throws Exception {
-        String sql = """
-                INSERT INTO `timekeeper`.`user` (`username`, `fullname`, `password`, `role`, `room_id`)
-                VALUES (?,?,?,?,?)
-                """;
+        String sql = "INSERT INTO `timekeeper`.`user` (`username`, `fullname`, `password`, `role`, `room_id`) VALUES (?,?,?,?,?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setObject(1, user.getUsername());
         st.setObject(2, user.getFullName());
@@ -48,10 +45,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public void insertAction(User user, int type) throws Exception {
-        String sql = """
-                INSERT INTO `timekeeper`.`timekeeping_action` (`user_id`, `action_time`, `type`) 
-                VALUES (?,?,?);
-                """;
+        String sql = "INSERT INTO `timekeeper`.`timekeeping_action` (`user_id`, `action_time`, `type`) VALUES (?,?,?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setInt(1, user.getUserId());
         st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
@@ -62,9 +56,7 @@ public class HikariConnector implements IDBConnector {
     @Override
     public Vector<Action> getActionByUserId(int id) throws Exception {
         Vector<Action> actions = new Vector<>();
-        String sql = """
-                SELECT * FROM `timekeeper`.`timekeeping_action` ORDER BY `action_time`;
-                """;
+        String sql = "SELECT * FROM `timekeeper`.`timekeeping_action` ORDER BY `action_time`";
         PreparedStatement st = getConnection().prepareStatement(sql);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
@@ -79,9 +71,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public Vector<Action> getActionByTimeStampAndUserId(Timestamp start, Timestamp end, int userId) throws Exception {
-        String sql = """
-                SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ? AND user_id = ? ORDER BY `action_time` ASC
-                """;
+        String sql = "SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ? AND user_id = ? ORDER BY `action_time` ASC";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setTimestamp(1, start);
         st.setTimestamp(2, end);
@@ -101,9 +91,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public Vector<Action> getTimeDifferent(Timestamp start, Timestamp end) throws Exception {
-        String sql = """
-                SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ?
-                """;
+        String sql = "SELECT * FROM `timekeeping_action` WHERE action_time BETWEEN ? AND ?";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setTimestamp(1, start);
         st.setTimestamp(2, end);
@@ -141,9 +129,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public Vector<TimekeepingRequest> getRequest() throws Exception {
-        String sql = """
-                SELECT timekeeping_request.*,`user`.fullname FROM timekeeping_request,`user` WHERE `user`.user_id = timekeeping_request.user_id;
-                """;
+        String sql = "SELECT timekeeping_request.*,`user`.fullname FROM timekeeping_request,`user` WHERE `user`.user_id = timekeeping_request.user_id";
         PreparedStatement st = getConnection().prepareStatement(sql);
         ResultSet rs = st.executeQuery();
         Vector<TimekeepingRequest> requests = new Vector<>();

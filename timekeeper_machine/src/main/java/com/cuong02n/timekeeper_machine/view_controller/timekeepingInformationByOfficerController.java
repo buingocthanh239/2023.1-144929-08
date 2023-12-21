@@ -1,6 +1,7 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.controller.Calculator;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
 import com.cuong02n.timekeeper_machine.model.Action;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
@@ -89,18 +90,9 @@ public class timekeepingInformationByOfficerController implements Initializable 
                 stg.setScene(new Scene(fxmlLoader.load()));
             }
         });
-        Vector<InformationOfficeModel> informationOfficeModels = new Vector<>();
-        for (int i = 0, indexRoot = 0; i < actions.size(); i++) {
-            while (i<actions.size() && (actions.get(i).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear() ==
-                    actions.get(indexRoot).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear())) {
-                i++;
-            }
-            informationOfficeModels.add(new InformationOfficeModel(actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
-            indexRoot = i;
-        }
+
+        Vector<InformationOfficeModel> informationOfficeModels = Calculator.transformDataToDisplayOfficer(actions);
         ObservableList<InformationOfficeModel> observableList = FXCollections.observableList(informationOfficeModels);
-
-
         timekeepingInformationOfficerTableView.setItems(observableList);
     }
 
