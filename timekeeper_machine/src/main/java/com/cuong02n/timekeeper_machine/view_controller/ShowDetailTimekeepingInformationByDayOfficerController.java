@@ -9,15 +9,14 @@ import java.io.IOException;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class HomeByUnitHeadController {
-
-    public void onClickTimekeepingInformationButton(ActionEvent actionEvent) throws IOException {
+public class ShowDetailTimekeepingInformationByDayOfficerController {
+    public void onClickCloseButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("TimekeepingInformationByOfficerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
     }
 
-    public void onClickUnitTimekeepingInformationButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("UnitTimekeepingInformationForm.fxml"));
+    public void onClickComplainButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CreateTimekeepingQuestionsForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
     }
 }

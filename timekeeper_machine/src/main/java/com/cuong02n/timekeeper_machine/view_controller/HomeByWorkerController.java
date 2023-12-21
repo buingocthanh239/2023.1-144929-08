@@ -12,7 +12,7 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 
 public class HomeByWorkerController {
     public void onClickTimekeepingInformationButton(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingInformationByWorkerForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("TimekeepingInformationByWorkerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
     }
 }

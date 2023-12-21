@@ -1,19 +1,48 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
+import com.cuong02n.timekeeper_machine.database.HikariConnector;
+import com.cuong02n.timekeeper_machine.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import java.nio.Buffer;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
+import static com.cuong02n.timekeeper_machine.App.user;
 
 public class LoginFormController {
     @FXML
+    TextField passWordField;
+    @FXML
+    TextField idField;
+    @FXML
     public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("homeByHRMForm.fxml"));
-        stg.setScene(new Scene(fxmlLoader.load()));
-    }
 
+        String username = idField.getText();
+        String password = passWordField.getText();
+        user = HikariConnector.getInstance().verify(username,password);
+        if(user ==null){
+            // TODO:
+            System.out.println("cannot find user");
+            return;
+        }
+        FXMLLoader loader;
+
+        if(user.getRole() == User.ADMIN_ROLE){
+            loader  = new FXMLLoader(App.class.getResource("HomeByHRMForm.fxml"));
+        }else if(user.getRole() == User.ROOM_MANAGER_ROLE){
+            loader  = new FXMLLoader(App.class.getResource("HomeByUnitHeadForm.fxml"));
+        }else if(user.getRole() == User.STAFF_ROLE){
+            loader  = new FXMLLoader(App.class.getResource("HomeByOfficerForm.fxml"));
+        }else {
+             loader  = new FXMLLoader(App.class.getResource("HomeByWorkerForm.fxml"));
+        }
+        stg.setScene(new Scene(loader.load()));
+    }
 }
