@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class companyTimekeepingInformationUnitIsOfficerController implements Initializable {
+public class CompanyTimekeepingInformationUnitIsOfficerController implements Initializable {
 
     @FXML
     private TableView<InformationOfficeModel> companyOfficerTableView;
