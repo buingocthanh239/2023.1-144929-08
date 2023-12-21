@@ -172,4 +172,5 @@ public class HikariConnector implements IDBConnector {
     public Connection getConnection() throws Exception {
         return hikariDataSource.getConnection();
     }
+
 }

@@ -2,6 +2,7 @@ package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.HikariConnector;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,9 +22,10 @@ public class LoginFormController {
     TextField passWordField;
     @FXML
     TextField idField;
+    IDBConnector hikariConnector;
     @FXML
     public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
-
+        hikariConnector = HikariConnector.getInstance();
         String username = idField.getText();
         String password = passWordField.getText();
         user = HikariConnector.getInstance().verify(username,password);
