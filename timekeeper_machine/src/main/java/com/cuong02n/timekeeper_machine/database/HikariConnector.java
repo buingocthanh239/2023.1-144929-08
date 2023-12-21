@@ -125,10 +125,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception {
-        String sql = """
-                INSERT INTO `timekeeping_request` (`user_id`, `request_time`, `content`) 
-                VALUES (?,?,?);
-                """;
+        String sql = "INSERT INTO `timekeeping_request` (`user_id`, `request_time`, `content`) VALUES (?,?,?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setInt(1, timekeepingRequest.getUserId());
         st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
