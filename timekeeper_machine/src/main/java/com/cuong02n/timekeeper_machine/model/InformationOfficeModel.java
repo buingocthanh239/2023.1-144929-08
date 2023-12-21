@@ -15,6 +15,8 @@ public class InformationOfficeModel {
     private SimpleStringProperty afternoon;
     private SimpleDoubleProperty timeLate;
     private SimpleDoubleProperty timeEarly;
+    public int userId;
+    public String name;
 
     public InformationOfficeModel(String day, String morning, String afternoon, double timeLate, double timeEarly) {
         this.day = new SimpleStringProperty(day);
@@ -23,26 +25,29 @@ public class InformationOfficeModel {
         this.timeLate = new SimpleDoubleProperty(timeLate);
         this.timeEarly = new SimpleDoubleProperty(timeEarly);
     }
-    public InformationOfficeModel(Timestamp start,Timestamp end){
+
+    public InformationOfficeModel(int userId, String name, Timestamp start, Timestamp end) {
+        this.userId = userId;
+        this.name = name;
         boolean workInMorning = DateUtil.isMorning(start);
         boolean workInAfternoon = !DateUtil.isMorning(end);
         long late = 0L;
         long early = 0L;
-        if(workInMorning){
+        if (workInMorning) {
             //TODO: abstract
             late += DateUtil.morningLate(start);
             early += DateUtil.morningEarly(end);
         }
 
-        if(workInAfternoon){
-            late +=DateUtil.afternoonLate(start);
+        if (workInAfternoon) {
+            late += DateUtil.afternoonLate(start);
             early += DateUtil.afternoonEarly(end);
         }
         this.day = new SimpleStringProperty(String.valueOf(start.toLocalDateTime().toLocalDate()));
         this.morning = new SimpleStringProperty(String.valueOf(workInMorning));
         this.afternoon = new SimpleStringProperty(String.valueOf(workInAfternoon));
-        this.timeLate = new SimpleDoubleProperty(late/60.0/60);
-        this.timeEarly = new SimpleDoubleProperty(early/60.0/60);
+        this.timeLate = new SimpleDoubleProperty(late / 60.0 / 60);
+        this.timeEarly = new SimpleDoubleProperty(early / 60.0 / 60);
     }
 
     public InformationOfficeModel() {

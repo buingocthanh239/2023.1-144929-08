@@ -6,6 +6,16 @@ import java.sql.Timestamp;
 public class Action {
     int actionId;
     int userId;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    String name;
     Timestamp actionTime;
 
 

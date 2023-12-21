@@ -5,9 +5,11 @@ import com.cuong02n.timekeeper_machine.model.*;
 import java.util.Vector;
 
 public class Calculator {
-    static SummarizeInformationOfficer getSummarizeInformationOfficer(Vector<InformationOfficeModel> actions) {
+    public static SummarizeInformationOfficer getSummarizeInformationOfficer(Vector<InformationOfficeModel> actions) {
         SummarizeInformationOfficer data = new SummarizeInformationOfficer();
         for (InformationOfficeModel x : actions) {
+            data.userId = x.userId;
+            data.name = x.name;
             data.early += x.getTimeEarly();
             data.late += x.getTimeLate();
             if (Boolean.parseBoolean(x.getAfternoon())) data.workingSession++;
@@ -23,7 +25,7 @@ public class Calculator {
                                           actions.get(indexRoot).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear())) {
                 i++;
             }
-            informationOfficeModels.add(new InformationOfficeModel(actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
+            informationOfficeModels.add(new InformationOfficeModel(actions.get(i-1).getUserId(),actions.get(i-1).getName(),actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
             indexRoot = i;
         }
         return informationOfficeModels;

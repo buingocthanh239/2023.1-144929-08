@@ -13,14 +13,14 @@ public interface IDBConnector {
     void insertUser(User user)throws Exception;
 
     void insertAction(User user,int type) throws Exception;
-    Vector<Action> getActionByUserId(int id) throws Exception;
 
     Vector<Action> getActionByTimeStampAndUserId(Timestamp start, Timestamp end, int userId) throws Exception;
-    Vector<Action> getTimeDifferent(Timestamp start, Timestamp end) throws Exception;
+    Vector<Integer> getUserByRoomId(int roomId) throws Exception;
 
     User verify(String username, String password) throws Exception;
     Vector<TimekeepingRequest> getRequest() throws Exception;
 
     void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception;
 
+    int findRoomIdByUserId(int userId) throws Exception;
 }
