@@ -22,7 +22,7 @@ public class DateUtil {
     public static long getShift1Work(Timestamp start,Timestamp end){
         return 0L;
     }
-    if(shift1)
+//    if(shift1)
     public static boolean isMorning(Timestamp timestamp) {
         LocalTime time = timestamp.toLocalDateTime().toLocalTime();
         return time.isBefore(LocalTime.of(12, 30));
