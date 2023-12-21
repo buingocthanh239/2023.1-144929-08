@@ -89,7 +89,7 @@ public class InformationOfficeModel {
         this.afternoon.set(afternoon);
     }
 
-    public SimpleDoubleProperty getTimeLate() {
+    public double getTimeLate() {
         return timeLate.get();
     }
 
@@ -101,7 +101,7 @@ public class InformationOfficeModel {
         this.timeLate.set(timeLate);
     }
 
-    public SimpleDoubleProperty getTimeEarly() {
+    public double getTimeEarly() {
         return timeEarly.get();
     }
 

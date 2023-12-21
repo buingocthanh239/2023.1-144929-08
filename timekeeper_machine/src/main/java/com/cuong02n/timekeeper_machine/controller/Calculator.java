@@ -1,6 +1,8 @@
 package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.model.*;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Vector;
 
@@ -10,10 +12,10 @@ public class Calculator {
         for (InformationOfficeModel x : actions) {
             data.userId = x.userId;
             data.name = x.name;
-            data.early += x.getTimeEarly();
-            data.late += x.getTimeLate();
-            if (Boolean.parseBoolean(x.getAfternoon())) data.workingSession++;
-            if (Boolean.parseBoolean(x.getMorning())) data.workingSession++;
+            data.early.set(data.early.get() + x.getTimeEarly()) ;
+            data.late.set(data.late.get()+ x.getTimeLate());
+            if (Boolean.parseBoolean(x.getAfternoon())) data.workingSession.set(data.workingSession.get() + 1);
+            if (Boolean.parseBoolean(x.getMorning())) data.workingSession.set(data.workingSession.get() + 1);
         }
         return data;
     }
@@ -25,7 +27,7 @@ public class Calculator {
                                           actions.get(indexRoot).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear())) {
                 i++;
             }
-            informationOfficeModels.add(new InformationOfficeModel(actions.get(i-1).getUserId(),actions.get(i-1).getName(),actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
+            informationOfficeModels.add(new InformationOfficeModel(new SimpleIntegerProperty(actions.get(i-1).getUserId()),new SimpleStringProperty(actions.get(i-1).getName()),actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
             indexRoot = i;
         }
         return informationOfficeModels;
