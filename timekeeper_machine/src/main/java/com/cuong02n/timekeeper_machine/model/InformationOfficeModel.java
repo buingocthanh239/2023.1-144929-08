@@ -2,11 +2,10 @@ package com.cuong02n.timekeeper_machine.model;
 
 import com.cuong02n.timekeeper_machine.DateUtil;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalTime;
 
 public class InformationOfficeModel {
 
@@ -15,8 +14,8 @@ public class InformationOfficeModel {
     private SimpleStringProperty afternoon;
     private SimpleDoubleProperty timeLate;
     private SimpleDoubleProperty timeEarly;
-    public int userId;
-    public String name;
+    public SimpleIntegerProperty userId;
+    public SimpleStringProperty name;
 
     public InformationOfficeModel(String day, String morning, String afternoon, double timeLate, double timeEarly) {
         this.day = new SimpleStringProperty(day);
@@ -26,7 +25,7 @@ public class InformationOfficeModel {
         this.timeEarly = new SimpleDoubleProperty(timeEarly);
     }
 
-    public InformationOfficeModel(int userId, String name, Timestamp start, Timestamp end) {
+    public InformationOfficeModel(SimpleIntegerProperty userId, SimpleStringProperty name, Timestamp start, Timestamp end) {
         this.userId = userId;
         this.name = name;
         boolean workInMorning = DateUtil.isMorning(start);
@@ -90,7 +89,7 @@ public class InformationOfficeModel {
         this.afternoon.set(afternoon);
     }
 
-    public double getTimeLate() {
+    public SimpleDoubleProperty getTimeLate() {
         return timeLate.get();
     }
 
@@ -102,7 +101,7 @@ public class InformationOfficeModel {
         this.timeLate.set(timeLate);
     }
 
-    public double getTimeEarly() {
+    public SimpleDoubleProperty getTimeEarly() {
         return timeEarly.get();
     }
 

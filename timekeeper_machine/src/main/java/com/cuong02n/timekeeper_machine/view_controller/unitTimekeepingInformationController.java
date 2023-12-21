@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,13 +30,13 @@ import static com.cuong02n.timekeeper_machine.App.user;
 
 public class unitTimekeepingInformationController implements Initializable {
     @FXML
-    public TableColumn showId;
+    public TableColumn<SummarizeInformationOfficer, Integer> showId;
     @FXML
-    public TableColumn showName;
+    public TableColumn<SummarizeInformationOfficer, String> showName;
     @FXML
-    public TableColumn showWorkSession;
+    public TableColumn<SummarizeInformationOfficer, Integer> showWorkSession;
     @FXML
-    public TableColumn showX;
+    public TableColumn<SummarizeInformationOfficer, Double> showX;
     @FXML
     private TableView<SummarizeInformationOfficer> companyOfficerTableView;
     @FXML
@@ -43,6 +44,10 @@ public class unitTimekeepingInformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        showId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        showName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        showWorkSession.setCellValueFactory(new PropertyValueFactory<>("workingSession"));
+        showX.setCellValueFactory(new PropertyValueFactory<>("earlyAndLate"));
         try {
             showDetailCol.setCellFactory(param -> new TableCell<>() {
                 final Button btn = new Button("Mở");

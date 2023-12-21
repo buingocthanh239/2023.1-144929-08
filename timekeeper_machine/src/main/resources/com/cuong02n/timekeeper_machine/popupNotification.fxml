@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.PopupNotification">
+   <children>
+      <Label layoutX="109.0" layoutY="14.0" text="Thông báo">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="messeger" layoutX="99.0" layoutY="67.0" text="Đăng nhập thất bại" />
+   </children>
+</AnchorPane>
