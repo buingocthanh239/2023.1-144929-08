@@ -1,8 +1,11 @@
 package com.cuong02n.timekeeper_machine;
 
+import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.model.User;
+import com.cuong02n.timekeeper_machine.view_controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -17,10 +20,13 @@ public class App extends Application {
         stg = stage;
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Phần mềm quản lý chấm công");
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setScene(scene);
         stage.show();
+
+        var controller = fxmlLoader.<LoginController>getController();
+        controller.setDBConnector(DatabaseManager.hikariConnector);
     }
     public static void main(String[] args) {
         launch();

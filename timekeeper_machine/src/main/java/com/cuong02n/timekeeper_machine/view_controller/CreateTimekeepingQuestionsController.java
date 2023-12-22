@@ -17,13 +17,17 @@ import java.sql.Timestamp;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class CreateTimekeepingQuestionsController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+public class CreateTimekeepingQuestionsController {
+    IDBConnector idbConnector ;
 
     @FXML
     public Button comfirmCreateQuestionButton;
     @FXML
     public TextField questionContentField;
 
+    void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
     public void onClickConfirmCreateQuestionButton(ActionEvent actionEvent) throws Exception{
         String content = questionContentField.getText();
         int userId = App.user.getUserId();

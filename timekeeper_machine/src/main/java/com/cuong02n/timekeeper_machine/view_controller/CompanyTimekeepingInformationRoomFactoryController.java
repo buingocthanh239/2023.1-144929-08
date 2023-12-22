@@ -4,5 +4,4 @@ import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 
 public class CompanyTimekeepingInformationRoomFactoryController {
-    IDBConnector idbConnector = DatabaseManager.getDBNow();
 }

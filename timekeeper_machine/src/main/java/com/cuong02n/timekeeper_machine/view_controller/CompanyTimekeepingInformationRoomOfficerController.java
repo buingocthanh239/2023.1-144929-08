@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import static com.cuong02n.timekeeper_machine.App.stg;
 
 public class CompanyTimekeepingInformationRoomOfficerController implements Initializable {
-    IDBConnector idbConnector = DatabaseManager.getDBNow();
+    IDBConnector idbConnector;
 
 
     @FXML
@@ -31,6 +31,9 @@ public class CompanyTimekeepingInformationRoomOfficerController implements Initi
     @FXML
     private TableColumn<InformationOfficeModel, Void> showDetailCol;
 
+    void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showDetailCol.setCellFactory(param -> new TableCell<>() {

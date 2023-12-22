@@ -22,7 +22,12 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class ShowDetailWorkerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+public class ShowDetailWorkerController implements Initializable {
+    IDBConnector idbConnector;
+
+    public void setDBConnector(IDBConnector idbConnector) {
+        this.idbConnector = idbConnector;
+    }
 
     public TableView<InformationWorkerModel> timekeepingInformationWorkerTableview;
     public TableColumn<InformationWorkerModel, String> dayCol;
@@ -41,6 +46,7 @@ public class ShowDetailWorkerController implements Initializable {    IDBConnect
 
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
+
             {
                 // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
@@ -76,7 +82,7 @@ public class ShowDetailWorkerController implements Initializable {    IDBConnect
     }
 
     ObservableList<InformationWorkerModel> observableList = FXCollections.observableArrayList(
-            new InformationWorkerModel(null,null)// TODO
+            new InformationWorkerModel(null, null)// TODO
     );
 }
 

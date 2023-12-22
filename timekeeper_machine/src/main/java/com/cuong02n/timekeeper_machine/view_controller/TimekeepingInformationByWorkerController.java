@@ -22,8 +22,11 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class TimekeepingInformationByWorkerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class TimekeepingInformationByWorkerController implements Initializable {
+    IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
     public TableView<InformationWorkerModel> timekeepingInformationWorkerTableview;
     public TableColumn<InformationWorkerModel, String> dayCol;
     public TableColumn<InformationWorkerModel, Double> shift1Col;

@@ -1,29 +1,32 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
-import com.cuong02n.timekeeper_machine.database.HikariConnector;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.nio.Buffer;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class LoginFormController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class LoginController {
+    private IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector=idbConnector;
+    }
     @FXML
     TextField passWordField;
     @FXML
     TextField idField;
+    public void test(){
+        System.out.println("test function");
+    }
+    public void initialize(){
+        System.out.println("init function");
+    }
     @FXML
     public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
         String username = idField.getText();

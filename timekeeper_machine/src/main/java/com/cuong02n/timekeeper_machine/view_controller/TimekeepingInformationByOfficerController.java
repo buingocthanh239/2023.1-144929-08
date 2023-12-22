@@ -29,8 +29,10 @@ import java.util.Vector;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class TimekeepingInformationByOfficerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class TimekeepingInformationByOfficerController implements Initializable {    IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableView;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;

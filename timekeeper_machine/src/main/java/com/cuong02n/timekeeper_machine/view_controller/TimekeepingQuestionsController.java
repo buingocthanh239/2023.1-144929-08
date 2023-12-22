@@ -21,8 +21,11 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class TimekeepingQuestionsController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class TimekeepingQuestionsController implements Initializable {
+    IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
 
     @FXML
     private TableView<examInformationQuestionDB> timekeepingInformationQuestionTableView;

@@ -15,8 +15,12 @@ import java.io.IOException;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class HomeByHRMController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+public class HomeByHRMController {
 
+    private IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector=idbConnector;
+    }
     @FXML
     public Button timekeepingInformationButton;
     @FXML

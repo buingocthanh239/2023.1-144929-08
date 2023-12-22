@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class HomeByOfficerController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class HomeByOfficerController {
+    private IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector=idbConnector;
+    }
     public void onClickButton(ActionEvent actionEvent) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingInformationByOfficerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));

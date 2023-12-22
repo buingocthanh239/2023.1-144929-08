@@ -11,8 +11,7 @@ import java.io.IOException;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class ShowDetailTimekeepingInformationByDayOfficerController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+public class ShowDetailTimekeepingInformationByDayOfficerController {
     public void onClickCloseButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingInformationByOfficerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));

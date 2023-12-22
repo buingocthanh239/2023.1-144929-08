@@ -1,7 +1,6 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
@@ -22,7 +21,12 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class ShowDetailOfficerController implements Initializable {    IDBConnector idbConnector = DatabaseManager.getDBNow();
+public class ShowDetailOfficerController implements Initializable {
+    IDBConnector idbConnector;
+
+    public void setDBConnector(IDBConnector idbConnector) {
+        this.idbConnector = idbConnector;
+    }
 
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableview;
     public TableColumn<InformationOfficeModel, String> dayCol;
@@ -44,6 +48,7 @@ public class ShowDetailOfficerController implements Initializable {    IDBConnec
 
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
+
             {
                 // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
@@ -71,6 +76,8 @@ public class ShowDetailOfficerController implements Initializable {    IDBConnec
 
             private void showDetail(InformationOfficeModel rowData) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeHMRForm.fxml"));
+                var controller = fxmlLoader.<ShowDetailTimekeepingInformationByDayOfficerHMRController>getController();
+                controller.setDBConnector(idbConnector);
                 stg.setScene(new Scene(fxmlLoader.load()));
             }
         });
@@ -79,6 +86,6 @@ public class ShowDetailOfficerController implements Initializable {    IDBConnec
     }
 
     ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
-            new InformationOfficeModel("1/1/2023", "có", "không",0,0)
+            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
     );
 }

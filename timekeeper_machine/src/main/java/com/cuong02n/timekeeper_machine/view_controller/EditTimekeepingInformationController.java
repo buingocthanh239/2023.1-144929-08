@@ -11,9 +11,7 @@ import java.io.IOException;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class EditTimekeepingInformationController {    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
-
+public class EditTimekeepingInformationController {
     public void onClickSaveButton(ActionEvent actionEvent) {
     }
 

@@ -29,8 +29,10 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
 public class UnitTimekeepingInformationController implements Initializable {
-    IDBConnector idbConnector = DatabaseManager.getDBNow();
-
+    IDBConnector idbConnector;
+    public void setDBConnector(IDBConnector idbConnector){
+        this.idbConnector = idbConnector;
+    }
     @FXML
     public TableColumn<SummarizeInformationOfficer, Integer> showId;
     @FXML
