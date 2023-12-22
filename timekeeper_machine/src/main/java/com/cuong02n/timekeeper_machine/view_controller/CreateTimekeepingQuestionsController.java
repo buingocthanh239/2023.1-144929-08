@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -19,7 +20,7 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 
 public class CreateTimekeepingQuestionsController {
     IDBConnector idbConnector ;
-
+    Stage popUpParent;
     @FXML
     public Button comfirmCreateQuestionButton;
     @FXML
@@ -40,7 +41,11 @@ public class CreateTimekeepingQuestionsController {
     }
 
     public void onClickCloseCreateQuestionButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeForm.fxml"));
-        stg.setScene(new Scene(fxmlLoader.load()));
+//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeForm.fxml"));
+//        pop.setScene(new Scene(fxmlLoader.load()));
+        popUpParent.hide();
+    }
+    public void setStage(Stage stage){
+        popUpParent = stage;
     }
 }

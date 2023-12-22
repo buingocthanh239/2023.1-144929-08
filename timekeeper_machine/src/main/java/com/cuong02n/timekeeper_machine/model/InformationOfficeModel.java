@@ -7,6 +7,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Timestamp;
 
+import static java.lang.Math.abs;
+
 public class InformationOfficeModel {
 
     private SimpleStringProperty day;
@@ -16,6 +18,18 @@ public class InformationOfficeModel {
     private SimpleDoubleProperty timeEarly;
     public SimpleIntegerProperty userId;
     public SimpleStringProperty name;
+    public Timestamp start;
+    public Timestamp end;
+
+    @Override
+    public String toString() {
+        return "Ngày "+day.get()+" \n"
+                +"Bạn đi làm từ "+start.toString()+" đến "+end.toString()+"\n"
+                +"Máy chấm công nhận được là " + ((Boolean.parseBoolean(morning.get()))?"buổi sáng, ":"")+((Boolean.parseBoolean(morning.get()))?"buổi chiều ":"")+"\n"
+                +"Thời gian đi muộn là "+timeLate.get()+"\n"
+                +"Thời gian về sớm là "+timeEarly.get()+"\n";
+
+    }
 
     public InformationOfficeModel(String day, String morning, String afternoon, double timeLate, double timeEarly) {
         this.day = new SimpleStringProperty(day);
@@ -26,6 +40,8 @@ public class InformationOfficeModel {
     }
 
     public InformationOfficeModel(SimpleIntegerProperty userId, SimpleStringProperty name, Timestamp start, Timestamp end) {
+        this.end = end;
+        this.start = start;
         this.userId = userId;
         this.name = name;
         boolean workInMorning = DateUtil.isMorning(start);
@@ -34,13 +50,13 @@ public class InformationOfficeModel {
         long early = 0L;
         if (workInMorning) {
             //TODO: abstract
-            late += DateUtil.morningLate(start);
-            early += DateUtil.morningEarly(end);
+            late += abs(DateUtil.morningLate(start));
+            early += abs(DateUtil.morningEarly(end));
         }
 
         if (workInAfternoon) {
-            late += DateUtil.afternoonLate(start);
-            early += DateUtil.afternoonEarly(end);
+            late += abs(DateUtil.afternoonLate(start));
+            early += abs(DateUtil.afternoonEarly(end));
         }
         this.day = new SimpleStringProperty(String.valueOf(start.toLocalDateTime().toLocalDate()));
         this.morning = new SimpleStringProperty(String.valueOf(workInMorning));

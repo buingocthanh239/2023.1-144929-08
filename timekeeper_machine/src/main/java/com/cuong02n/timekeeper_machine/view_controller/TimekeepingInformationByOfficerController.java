@@ -2,15 +2,11 @@ package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.controller.Calculator;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
-import com.cuong02n.timekeeper_machine.database.HikariConnector;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.Action;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,21 +14,23 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.ResourceBundle;
 import java.util.Vector;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class TimekeepingInformationByOfficerController implements Initializable {    IDBConnector idbConnector;
-    public void setDBConnector(IDBConnector idbConnector){
+public class TimekeepingInformationByOfficerController {
+    IDBConnector idbConnector;
+
+    public void setDBConnector(IDBConnector idbConnector) {
         this.idbConnector = idbConnector;
     }
+
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableView;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;
@@ -42,26 +40,31 @@ public class TimekeepingInformationByOfficerController implements Initializable 
 
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Vector<Action> actions = new Vector<>();
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            calendar.set(Calendar.HOUR, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            Timestamp start = new Timestamp(calendar.getTimeInMillis());
-            Timestamp end = new Timestamp(System.currentTimeMillis());
-            actions = idbConnector.getActionByTimeStampAndUserId(start, end, user.getUserId());
-        } catch (Exception e) {
-        }
+    void loadDataFromDatabase() throws Exception {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Timestamp start = new Timestamp(calendar.getTimeInMillis());
+        Timestamp end = new Timestamp(System.currentTimeMillis());
+        Vector<Action> actions = idbConnector.getActionByTimeStampAndUserId(start, end, user.getUserId());
+        setButtonOpenForARow();
+        showDataFromDataLoaded(actions);
+    }
+
+    void showDataFromDataLoaded(Vector<Action> actions) {
         morningCol.setCellValueFactory(new PropertyValueFactory<>("morning"));
         afternoonCol.setCellValueFactory(new PropertyValueFactory<>("afternoon"));
         timeLateCol.setCellValueFactory(new PropertyValueFactory<>("timeLate"));
         timeEarlyCol.setCellValueFactory(new PropertyValueFactory<>("timeEarly"));
         dayCol.setCellValueFactory(new PropertyValueFactory<>("day"));
+        Vector<InformationOfficeModel> informationOfficeModels = Calculator.transformDataToDisplayOfficer(actions);
+        timekeepingInformationOfficerTableView.setItems(FXCollections.observableList(informationOfficeModels));
+    }
 
+    void setButtonOpenForARow() {
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
 
@@ -92,13 +95,16 @@ public class TimekeepingInformationByOfficerController implements Initializable 
 
             private void showDetail(InformationOfficeModel rowData) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeForm.fxml"));
-                stg.setScene(new Scene(fxmlLoader.load()));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(fxmlLoader.load(),450,300));
+                stage.setTitle("Gửi thắc mắc chấm công");
+                stage.show();
+                var controller = fxmlLoader.<ShowDetailTimekeepingInformationByDayOfficerController>getController();
+                controller.showData(rowData);
+                controller.setStage(stage);
+                controller.setDBConnector(idbConnector);
             }
         });
-
-        Vector<InformationOfficeModel> informationOfficeModels = Calculator.transformDataToDisplayOfficer(actions);
-        ObservableList<InformationOfficeModel> observableList = FXCollections.observableList(informationOfficeModels);
-        timekeepingInformationOfficerTableView.setItems(observableList);
     }
 
 

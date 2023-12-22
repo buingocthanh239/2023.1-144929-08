@@ -8,7 +8,7 @@ public class User {
     private String fullName;
 
     private int role; // 0: staff, 1: worker, 2: room_manager, 3:admin
-    public static final int STAFF_ROLE = 0;
+    public static final int OFFICER_ROLE = 0;
     public static final int WORKER_ROLE = 1;
     public static final int ROOM_MANAGER_ROLE = 2;
     public static final int ADMIN_ROLE = 3;

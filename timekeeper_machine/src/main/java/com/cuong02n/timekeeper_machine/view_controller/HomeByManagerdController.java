@@ -1,7 +1,6 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,7 @@ import java.io.IOException;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class HomeByUnitHeadController {
+public class HomeByManagerdController {
     private IDBConnector idbConnector;
     public void setDBConnector(IDBConnector idbConnector){
         this.idbConnector=idbConnector;
