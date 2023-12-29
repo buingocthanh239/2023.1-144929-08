@@ -35,29 +35,6 @@ public class LoginController {
             System.out.println("cannot find user");
             return;
         }
-        FXMLLoader loader;
-
-        if (user.getRole() == User.ADMIN_ROLE) {
-            loader = new FXMLLoader(App.class.getResource("homeByHRMForm.fxml"));
-            stg.setScene(new Scene(loader.load()));
-            var controller = loader.<HomeByHRMController>getController();
-            controller.setDBConnector(this.idbConnector);
-        } else if (user.getRole() == User.ROOM_MANAGER_ROLE) {
-            loader = new FXMLLoader(App.class.getResource("homeByManagerForm.fxml"));
-            stg.setScene(new Scene(loader.load()));
-            var controller = loader.<HomeByManagerdController>getController();
-            controller.setDBConnector(this.idbConnector);
-        } else if (user.getRole() == User.OFFICER_ROLE) {
-            loader = new FXMLLoader(App.class.getResource("homeByOfficerForm.fxml"));
-            stg.setScene(new Scene(loader.load()));
-            var controller = loader.<HomeByOfficerController>getController();
-            controller.setDBConnector(this.idbConnector);
-        } else {
-            loader = new FXMLLoader(App.class.getResource("homeByWorkerForm.fxml"));
-            stg.setScene(new Scene(loader.load()));
-            var controller = loader.<HomeByWorkerController>getController();
-            controller.setDBConnector(this.idbConnector);
-        }
-
+        ViewNavigator.gotoHomeForm();
     }
 }

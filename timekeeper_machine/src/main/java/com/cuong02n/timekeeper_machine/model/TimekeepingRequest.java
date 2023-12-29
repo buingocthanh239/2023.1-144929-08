@@ -8,7 +8,9 @@ public class TimekeepingRequest {
     int userId;
     Timestamp requestTime;
     String content;
-
+    String status;
+    public void setStatus(String status){this.status = status;}
+    public String getStatus(){return status;}
     public int getRequestId() {
         return requestId;
     }

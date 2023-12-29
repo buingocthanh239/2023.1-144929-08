@@ -117,6 +117,7 @@ public class HikariConnector implements IDBConnector {
             action.setRequestTime(rs.getTimestamp("request_time"));
             action.setContent(rs.getString("content"));
             action.setFullName(rs.getString("fullname"));
+            action.setStatus(rs.getString("status"));
             requests.add(action);
         }
         System.out.println(requests.size());
@@ -143,6 +144,32 @@ public class HikariConnector implements IDBConnector {
             return resultSet.getInt("room_id");
         }
         return -1;
+    }
+
+
+    @Override
+    public Vector<TimekeepingRequest> getTimeKeepingRequestByUserId(int userId) {
+        return null;
+    }
+
+    @Override
+    public void setStatusByRequestId(int requestId) throws Exception{
+        String sql = "UPDATE timekeeping_request SET `status`=N'Đã xử lý' WHERE request_id = ?";
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setObject(1, requestId);
+        st.executeUpdate();
+    }
+
+    @Override
+    public Vector<Integer> getListUserId() throws Exception {
+        String sql = "SELECT user.user_id FROM `user`";
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+        Vector<Integer> ids = new Vector<>();
+        while (rs.next()) {
+            ids.add(rs.getInt("user_id"));
+        }
+        return ids;
     }
 
 

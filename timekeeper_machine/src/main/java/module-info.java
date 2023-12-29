@@ -11,4 +11,6 @@ module com.cuong02n.timekeeper_machine {
     opens com.cuong02n.timekeeper_machine.view_controller to javafx.fxml;
     exports com.cuong02n.timekeeper_machine.model;
     opens com.cuong02n.timekeeper_machine.model to javafx.fxml;
+    exports com.cuong02n.timekeeper_machine.util;
+    opens com.cuong02n.timekeeper_machine.util to javafx.fxml;
 }

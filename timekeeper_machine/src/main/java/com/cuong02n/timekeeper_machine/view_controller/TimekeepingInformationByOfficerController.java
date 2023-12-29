@@ -1,30 +1,34 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.controller.Calculator;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.Action;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
+import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
+import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
+import com.cuong02n.timekeeper_machine.util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
-import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class TimekeepingInformationByOfficerController {
+public class TimekeepingInformationByOfficerController implements Initializable {
+    public Label earlyLateLabel;
+    public Label totalWorkLabel;
+    public ImageView homeButton;
     IDBConnector idbConnector;
 
     public void setDBConnector(IDBConnector idbConnector) {
@@ -40,15 +44,22 @@ public class TimekeepingInformationByOfficerController {
 
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
 
-    void loadDataFromDatabase() throws Exception {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        Timestamp start = new Timestamp(calendar.getTimeInMillis());
-        Timestamp end = new Timestamp(System.currentTimeMillis());
+        homeButton.setOnMouseClicked(event -> {
+            try {
+                ViewNavigator.gotoHomeForm();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+
+    void loadDataFromDatabase() throws Exception {
+        Timestamp start = DateUtil.getStartTimeThisMonth();
+        Timestamp end = DateUtil.getNow();
         Vector<Action> actions = idbConnector.getActionByTimeStampAndUserId(start, end, user.getUserId());
         setButtonOpenForARow();
         showDataFromDataLoaded(actions);
@@ -60,8 +71,12 @@ public class TimekeepingInformationByOfficerController {
         timeLateCol.setCellValueFactory(new PropertyValueFactory<>("timeLate"));
         timeEarlyCol.setCellValueFactory(new PropertyValueFactory<>("timeEarly"));
         dayCol.setCellValueFactory(new PropertyValueFactory<>("day"));
-        Vector<InformationOfficeModel> informationOfficeModels = Calculator.transformDataToDisplayOfficer(actions);
+        Vector<InformationOfficeModel> informationOfficeModels = TimeKeepingManager.getInstance().transformActionToOfficeModel((actions));
         timekeepingInformationOfficerTableView.setItems(FXCollections.observableList(informationOfficeModels));
+
+        SummarizeInformationOfficer summarize = TimeKeepingManager.getInstance().calculateSummarizeByAction(informationOfficeModels);
+        totalWorkLabel.setText("" + summarize.getWorkingSession());
+        earlyLateLabel.setText("" + summarize.getEarlyAndLate());
     }
 
     void setButtonOpenForARow() {
@@ -96,7 +111,7 @@ public class TimekeepingInformationByOfficerController {
             private void showDetail(InformationOfficeModel rowData) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeForm.fxml"));
                 Stage stage = new Stage();
-                stage.setScene(new Scene(fxmlLoader.load(),450,300));
+                stage.setScene(new Scene(fxmlLoader.load(), 450, 300));
                 stage.setTitle("Gửi thắc mắc chấm công");
                 stage.show();
                 var controller = fxmlLoader.<ShowDetailTimekeepingInformationByDayOfficerController>getController();

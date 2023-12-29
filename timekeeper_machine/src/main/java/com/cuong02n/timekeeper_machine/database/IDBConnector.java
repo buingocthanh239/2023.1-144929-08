@@ -23,4 +23,10 @@ public interface IDBConnector {
     void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception;
 
     int findRoomIdByUserId(int userId) throws Exception;
+
+    Vector<TimekeepingRequest> getTimeKeepingRequestByUserId(int userId);
+
+    void setStatusByRequestId(int requestId) throws Exception;
+
+    Vector<Integer> getListUserId() throws Exception;
 }

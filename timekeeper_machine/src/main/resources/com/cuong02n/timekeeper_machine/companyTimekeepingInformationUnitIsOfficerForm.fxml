@@ -86,10 +86,10 @@
             </Label>
             <TableView fx:id="companyOfficerTableView" layoutX="10.0" layoutY="100.0" prefHeight="430.0" prefWidth="580.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
                <columns>
-                  <TableColumn prefWidth="103.0" text="Mã NV" />
-                  <TableColumn prefWidth="98.0" text="Họ và Tên" />
-                  <TableColumn prefWidth="139.0" text="Số buổi đi làm" />
-                  <TableColumn prefWidth="146.0" text="Số giờ đi sớm/về muộn" />
+                  <TableColumn fx:id="userIdCol" prefWidth="103.0" text="Mã NV" />
+                  <TableColumn fx:id="fullNameCol" prefWidth="98.0" text="Họ và Tên" />
+                  <TableColumn fx:id="numberWork" prefWidth="139.0" text="Số buổi đi làm" />
+                  <TableColumn fx:id="lateEarlyCol" prefWidth="140.0" text="Số giờ đi sớm" />
                   <TableColumn fx:id="showDetailCol" prefWidth="92.0" text="Xem chi tiết" />
                </columns>
             </TableView>

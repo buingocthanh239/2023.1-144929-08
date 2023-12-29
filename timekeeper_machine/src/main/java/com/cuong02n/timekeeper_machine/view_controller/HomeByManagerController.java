@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class HomeByManagerdController {
+public class HomeByManagerController {
     private IDBConnector idbConnector;
     public void setDBConnector(IDBConnector idbConnector){
         this.idbConnector=idbConnector;

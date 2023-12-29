@@ -3,25 +3,27 @@ package com.cuong02n.timekeeper_machine.view_controller;
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
+import com.cuong02n.timekeeper_machine.util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
 public class ShowDetailOfficerController implements Initializable {
+    @FXML
+    public Label labelText;
     IDBConnector idbConnector;
 
     public void setDBConnector(IDBConnector idbConnector) {
@@ -35,7 +37,6 @@ public class ShowDetailOfficerController implements Initializable {
     public TableColumn<InformationOfficeModel, Double> timeLateCol;
     public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
 
-
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
 
     @Override
@@ -48,12 +49,9 @@ public class ShowDetailOfficerController implements Initializable {
 
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
-
             {
-                // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
             }
-
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -81,11 +79,16 @@ public class ShowDetailOfficerController implements Initializable {
                 stg.setScene(new Scene(fxmlLoader.load()));
             }
         });
-
         timekeepingInformationOfficerTableview.setItems(observableList);
     }
 
+    public void showData(int userId,int year,int month){
+        labelText.setText("Xem chi tiết chấm công nhân viên "+userId);
+        Timestamp startMonth = DateUtil.getStartTimeOfMonth(year,month);
+        Timestamp endMonth = DateUtil.getStartTimeOfNextMonth(startMonth);
+
+    }
     ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
-            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
+//            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
     );
 }

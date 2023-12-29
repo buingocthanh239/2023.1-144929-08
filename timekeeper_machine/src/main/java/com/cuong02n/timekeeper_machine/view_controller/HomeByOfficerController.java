@@ -15,7 +15,7 @@ public class HomeByOfficerController {
         this.idbConnector=idbConnector;
     }
     public void onClickButton(ActionEvent actionEvent) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingInformationByOfficerForm.fxml"));
-        stg.setScene(new Scene(fxmlLoader.load()));
+
+        ViewNavigator.gotoTimeKeepingInformationForm();
     }
 }

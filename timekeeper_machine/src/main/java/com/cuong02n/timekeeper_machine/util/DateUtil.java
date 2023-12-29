@@ -1,10 +1,14 @@
-package com.cuong02n.timekeeper_machine;
+package com.cuong02n.timekeeper_machine.util;
+
+import com.zaxxer.hikari.util.SuspendResumeLock;
 
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.TemporalUnit;
+import java.util.List;
 import java.util.Locale;
 
 public class DateUtil {
@@ -22,7 +26,6 @@ public class DateUtil {
     public static long getShift1Work(Timestamp start,Timestamp end){
         return 0L;
     }
-//    if(shift1)
     public static boolean isMorning(Timestamp timestamp) {
         LocalTime time = timestamp.toLocalDateTime().toLocalTime();
         return time.isBefore(LocalTime.of(12, 30));
@@ -54,5 +57,38 @@ public class DateUtil {
             return Duration.between(end.toLocalDateTime().toLocalTime(), endAfternoon).getSeconds();
         }
         return 0;
+    }
+
+    public static List<Integer> getListMonthToNow(){
+        return null;
+    }
+
+    public static Timestamp getNow(){
+        return new Timestamp(System.currentTimeMillis());
+    }
+    public static Timestamp getStartTimeThisDay(){
+        return Timestamp.valueOf(LocalDate.now().atStartOfDay());
+    }
+    public static Timestamp getStartTimeOfDay(int year,int month,int day){
+        return Timestamp.valueOf(LocalDate.now().atStartOfDay().withYear(year).withMonth(month).withDayOfMonth(day));
+    }
+    public static Timestamp getStartTimeOfDay(Timestamp timestamp){
+        return Timestamp.valueOf(timestamp.toLocalDateTime().toLocalDate().atStartOfDay());
+    }
+    public static Timestamp getStartTimeThisMonth(){
+        return Timestamp.valueOf(LocalDate.now().atStartOfDay().withDayOfMonth(1));
+    }
+    public static Timestamp getStartTimeOfMonth(int year,int month){
+        return Timestamp.valueOf(LocalDate.now().atStartOfDay().withYear(year).withMonth(month).withDayOfMonth(1));
+    }
+    public static Timestamp getStartTimeOfNextMonth(Timestamp timestamp){
+        return Timestamp.valueOf(timestamp.toLocalDateTime().withDayOfMonth(1).plusMonths(1));
+    }
+    public static Timestamp getStartTimeOfMonthLastYear(int month){
+        return Timestamp.valueOf(LocalDate.now().atStartOfDay().minusYears(1).withMonth(month).withDayOfMonth(1));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(LocalDate.now().getMonth().getValue());
     }
 }

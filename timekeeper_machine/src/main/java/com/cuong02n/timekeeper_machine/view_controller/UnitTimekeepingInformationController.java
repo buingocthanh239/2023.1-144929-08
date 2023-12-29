@@ -1,11 +1,11 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.controller.Calculator;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
-import com.cuong02n.timekeeper_machine.database.HikariConnector;
+import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
+import com.cuong02n.timekeeper_machine.util.Calculator;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
+import com.cuong02n.timekeeper_machine.util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -90,18 +91,10 @@ public class UnitTimekeepingInformationController implements Initializable {
 
             int roomId = idbConnector.findRoomIdByUserId(user.getUserId());
             Vector<Integer> ids = idbConnector.getUserByRoomId(roomId);
-            Vector<SummarizeInformationOfficer> dataToDisplay = new Vector<>();
-            for (int userId : ids) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.set(Calendar.HOUR, 0);
-                calendar.set(Calendar.MINUTE, 0);
-                calendar.set(Calendar.SECOND, 0);
-                Timestamp start = new Timestamp(calendar.getTimeInMillis());
-                Timestamp end = new Timestamp(System.currentTimeMillis());
-                var actions = idbConnector.getActionByTimeStampAndUserId(start, end, userId);
-                dataToDisplay.add(Calculator.getSummarizeInformationOfficer(Calculator.transformDataToDisplayOfficer(actions)));
-            }
+
+            Timestamp start = DateUtil.getStartTimeThisMonth();
+            Timestamp end = DateUtil.getNow();
+            Vector<SummarizeInformationOfficer> dataToDisplay = TimeKeepingManager.getInstance().getSummarizeOfficeByListId(ids,start,end);
             companyOfficerTableView.setItems(FXCollections.observableList(dataToDisplay));
             System.out.println(dataToDisplay.get(0));
         } catch (Exception e) {

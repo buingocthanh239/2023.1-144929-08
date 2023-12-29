@@ -21,37 +21,4 @@ public class InformationWorkerModel {
         // TODO:
     }
 
-
-    public String getDay() {
-        return day.get();
-    }
-
-    public void setDay(String day) {
-        this.day = new SimpleStringProperty(day);
-    }
-
-    public double getShift1() {
-        return shift1.get();
-    }
-
-    public void setShift1(double shift1) {
-        this.shift1 = new SimpleDoubleProperty(shift1);
-    }
-
-    public double getShift2() {
-        return shift2.get();
-    }
-
-    public void setShift2(double shift2) {
-        this.shift2 = new SimpleDoubleProperty(shift2);
-    }
-
-    public double getShift3() {
-        return shift3.get();
-    }
-
-    public void setShift3(double shift3) {
-        this.shift3 = new SimpleDoubleProperty(shift3);
-    }
-
 }

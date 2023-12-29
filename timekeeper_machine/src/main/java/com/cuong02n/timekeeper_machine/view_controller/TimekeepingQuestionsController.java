@@ -1,43 +1,49 @@
 package com.cuong02n.timekeeper_machine.view_controller;
 
-import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
+import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
-
-import static com.cuong02n.timekeeper_machine.App.stg;
+import java.util.Vector;
 
 public class TimekeepingQuestionsController implements Initializable {
+    public TableColumn<TimekeepingRequest, Integer> STT;
+    public TableColumn<TimekeepingRequest, Void> manageCol;
+    public TableColumn<TimekeepingRequest, Integer> userIdCol;
+    public TableColumn<TimekeepingRequest, String> fullNameCol;
+    public TableColumn<TimekeepingRequest, Timestamp> timeCol;
+    public TableColumn<TimekeepingRequest, String> contentCol;
+    public TableColumn<TimekeepingRequest, String> statusCol;
+
     IDBConnector idbConnector;
-    public void setDBConnector(IDBConnector idbConnector){
+
+    public void setDBConnector(IDBConnector idbConnector) {
         this.idbConnector = idbConnector;
     }
 
     @FXML
-    private TableView<examInformationQuestionDB> timekeepingInformationQuestionTableView;
+    private TableView<TimekeepingRequest> tableData;
 
     @FXML
-    private TableColumn<examInformationQuestionDB, Void> deleteCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        deleteCol.setCellFactory(param -> new TableCell<>() {
-            final Button btn = new Button("Xóa");
+        manageCol.setCellFactory(param -> new TableCell<>() {
+            final Button btn = new Button("Đã xử lý");
+
             {
                 // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
@@ -53,33 +59,41 @@ public class TimekeepingQuestionsController implements Initializable {
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        examInformationQuestionDB rowData = getTableView().getItems().get(getIndex());
                         try {
-                            deleteRow(rowData);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            TimekeepingRequest data = getTableView().getItems().get(getIndex());
+                            idbConnector.setStatusByRequestId(data.getRequestId());
+                            data.setStatus("Đã xử lý");
+                            showData();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     });
                 }
             }
-
-            private void deleteRow(examInformationQuestionDB rowData) throws IOException {
-                int rowIndex = timekeepingInformationQuestionTableView.getItems().indexOf(rowData);
-                timekeepingInformationQuestionTableView.getItems().remove(rowIndex);
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingQuestionsForm.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                stg.setScene(scene);
-            }
         });
-        timekeepingInformationQuestionTableView.setItems(createSampleData());
+
     }
 
+    void showData() {
+        var data = getFromDatabase();
+        STT.setCellValueFactory(new PropertyValueFactory<>("requestId"));
+        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+        contentCol.setCellValueFactory(new PropertyValueFactory<>("content"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        ObservableList<TimekeepingRequest> observableList = FXCollections.observableList(data);
+        tableData.setItems(observableList);
+    }
 
-    private ObservableList<examInformationQuestionDB> createSampleData() {
-        ObservableList<examInformationQuestionDB> data = FXCollections.observableArrayList();
-        for (int i = 0; i < 10; i++) {
-            data.add(new examInformationQuestionDB());
+    private Vector<TimekeepingRequest> getFromDatabase() {
+        try {
+            return idbConnector.getRequest();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return data;
+        return null;
     }
+
+
 }
