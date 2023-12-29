@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="800.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cuong02n.timekeeper_machine.view_controller.TimekeepingQuestionsController">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="800.0">
+            <children>
+                <Label layoutX="263.0" layoutY="5.0" text="Thắc mắc chấm công" textFill="#3c3744">
+                    <font>
+                        <Font name="System Bold" size="28.0"/>
+                    </font>
+                </Label>
+                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0">
+                    <image>
+                        <Image url="@../../../img/homeImg.png"/>
+                    </image>
+                </ImageView>
+                <Pane layoutY="47.0" prefHeight="3.0" prefWidth="800.0" style="-fx-background-color: #3c3744;"/>
+            </children>
+        </AnchorPane>
+        <TableView fx:id="tableData" layoutX="10.0" layoutY="70.0" prefHeight="510.0"
+                   prefWidth="780.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
+            <columns>
+                <TableColumn fx:id="STT" prefWidth="100.0" text="STT"/>
+                <TableColumn fx:id="userIdCol" prefWidth="100.0" text="Mã NV"/>
+                <TableColumn fx:id="fullNameCol" prefWidth="130.0" text="Họ và tên"/>
+                <TableColumn fx:id="timeCol" prefWidth="70.0" text="Thời gian gửi"/>
+                <TableColumn fx:id="contentCol" prefWidth="200.0" text="Nội dung"/>
+                <TableColumn fx:id="statusCol" prefWidth="72.0" text="Trạng thái"/>
+                <TableColumn fx:id="manageCol" prefWidth="126.0" text="Quản lý"/>
+            </columns>
+        </TableView>
+    </children>
+</Pane>
