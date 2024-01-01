@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="444.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.controller.CreateTimekeepingQuestionsController">
+<AnchorPane prefHeight="323.0" prefWidth="444.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.controller.ChangeActionByHMRController">
    <children>
       <Label layoutX="150.0" layoutY="5.0" text="Bản ghi chấm công" textFill="#3c3744">
          <font>
@@ -15,11 +15,7 @@
       <AnchorPane layoutX="19.0" layoutY="35.0" prefHeight="215.0" prefWidth="418.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;">
          <children>
             <Label layoutX="16.0" layoutY="29.0" text="Ngày:" textFill="#3c3744" />
-            <TextField fx:id="dayField" layoutX="58.0" layoutY="25.0" prefHeight="25.0" prefWidth="31.0" text="08" />
-            <TextField fx:id="monthField" layoutX="101.0" layoutY="25.0" prefHeight="25.0" prefWidth="31.0" text="08" />
-            <Label layoutX="93.0" layoutY="29.0" text="/" textFill="#3c3744" />
-            <TextField fx:id="yearField" layoutX="143.0" layoutY="25.0" prefHeight="25.0" prefWidth="44.0" text="08" />
-
+            <Label fx:id="dayLabel" layoutX="75.0" layoutY="29.0" text="1/1/2023" textFill="#3c3744" />
             <Label layoutX="16.0" layoutY="83.0" prefHeight="17.0" prefWidth="83.0" text="Giờ chấm công:" textFill="#3c3744" />
             <TextField fx:id="startHour" layoutX="109.0" layoutY="79.0" prefHeight="25.0" prefWidth="31.0" text="08" />
             <Label layoutX="150.0" layoutY="83.0" text=":" textFill="#3c3744" />
@@ -28,8 +24,6 @@
             <TextField fx:id="endHour" layoutX="109.0" layoutY="144.0" prefHeight="25.0" prefWidth="31.0" text="08" />
             <Label layoutX="150.0" layoutY="148.0" text=":" textFill="#3c3744" />
             <TextField fx:id="endMinute" layoutX="160.0" layoutY="144.0" prefHeight="25.0" prefWidth="31.0" text="08" />
-            <TextField fx:id="commentField" alignment="TOP_LEFT" layoutX="243.0" layoutY="51.0" prefHeight="118.0" prefWidth="161.0" text="Ghi chú:" />
-            <Label layoutX="134.0" layoutY="29.0" text="/" textFill="#3c3744" />
          </children>
       </AnchorPane>
       <Button fx:id="applyButton" layoutX="70.0" layoutY="277.0" mnemonicParsing="false" onAction="#onApplyEditButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Đồng ý" textFill="#fbfff1">

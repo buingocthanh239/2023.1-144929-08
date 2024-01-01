@@ -1,12 +1,17 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
+import com.cuong02n.timekeeper_machine.model.Action;
+import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import com.cuong02n.timekeeper_machine.model.User;
 import com.cuong02n.timekeeper_machine.util.DateUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
@@ -46,8 +51,6 @@ public class ViewNavigator {
 
         controller.setDBConnector(idbConnector);
         controller.loadDataFromDatabase();
-
-
     }
 
     public static void gotoTimeKeepingQuestionForm() throws Exception{
@@ -58,6 +61,42 @@ public class ViewNavigator {
         controller.showData();
     }
 
+    public static void showDetailTimekeepingOfficer(InformationOfficeModel rowData) throws Exception{
+        FXMLLoader fxmlLoader;
+        Stage stage = new Stage();
+        fxmlLoader = new FXMLLoader(App.class.getResource("showDetailByDayOfficeForm.fxml"));
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.setTitle("Chi tiết");
+        stage.show();
+
+        var controller = fxmlLoader.<ShowDetailADayController>getController();
+        controller.setDBConnector(idbConnector);
+        controller.showData(rowData);
+    }
+
+    public static void gotoCreateRequest(InformationOfficeModel data) throws Exception{
+        FXMLLoader fxmlLoader;
+        Stage stage = new Stage();
+        fxmlLoader = new FXMLLoader(App.class.getResource("createTimekeepingQuestionsForm.fxml"));
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.setTitle("Gửi thắc mắc chấm công");
+        stage.show();
+        var controller = fxmlLoader.<CreateTimekeepingQuestionsController>getController();
+        controller.setDBConnector(idbConnector);
+        controller.showData(data);
+    }
+
+    public static void gotoChangeRequest(InformationOfficeModel data) throws Exception{
+        FXMLLoader fxmlLoader;
+        Stage stage = new Stage();
+        fxmlLoader = new FXMLLoader(App.class.getResource("changeTimeActionByHMRFrom.fxml"));
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.setTitle("Chỉnh sửa chấm công");
+        stage.show();
+        var controller = fxmlLoader.<ChangeActionByHMRController>getController();
+        controller.setDBConnector(idbConnector);
+        controller.showData(data);
+    }
     public static void gotoCompanyTimeKeepingOfficer() throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("companyTimekeepingInformationUnitIsOfficerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
@@ -65,5 +104,10 @@ public class ViewNavigator {
         var controller = fxmlLoader.<CompanyTimekeepingInformationRoomOfficerController>getController();
         controller.setDBConnector(idbConnector);
         controller.loadData(DateUtil.getStartTimeThisMonth(),DateUtil.getStartTimeOfNextMonth(DateUtil.getStartTimeThisMonth()));
+    }
+
+    public static void closeStage(ActionEvent actionEvent){
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

@@ -1,4 +1,4 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;

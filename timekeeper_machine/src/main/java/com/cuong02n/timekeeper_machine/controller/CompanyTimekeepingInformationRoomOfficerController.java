@@ -1,12 +1,10 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
-import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -24,7 +22,6 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
-import static com.cuong02n.timekeeper_machine.App.user;
 
 public class CompanyTimekeepingInformationRoomOfficerController implements Initializable {
     public TableColumn<SummarizeInformationOfficer, Integer> userIdCol;

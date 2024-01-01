@@ -9,6 +9,16 @@ public class TimekeepingRequest {
     Timestamp requestTime;
     String content;
     String status;
+
+    String description;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setStatus(String status){this.status = status;}
     public String getStatus(){return status;}
     public int getRequestId() {

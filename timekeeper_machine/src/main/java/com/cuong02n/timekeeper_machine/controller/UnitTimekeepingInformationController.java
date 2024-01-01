@@ -1,8 +1,7 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
-import com.cuong02n.timekeeper_machine.util.Calculator;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
 import com.cuong02n.timekeeper_machine.util.DateUtil;
@@ -21,8 +20,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
 

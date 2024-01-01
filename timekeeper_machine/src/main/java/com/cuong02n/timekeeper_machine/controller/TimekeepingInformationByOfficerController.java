@@ -1,11 +1,9 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
-import com.cuong02n.timekeeper_machine.model.Action;
-import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
-import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
-import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
+import com.cuong02n.timekeeper_machine.model.*;
+import com.cuong02n.timekeeper_machine.util.Calculator;
 import com.cuong02n.timekeeper_machine.util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -29,24 +28,21 @@ public class TimekeepingInformationByOfficerController implements Initializable 
     public Label earlyLateLabel;
     public Label totalWorkLabel;
     public ImageView homeButton;
-    IDBConnector idbConnector;
-
-    public void setDBConnector(IDBConnector idbConnector) {
-        this.idbConnector = idbConnector;
-    }
-
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableView;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;
     public TableColumn<InformationOfficeModel, String> afternoonCol;
     public TableColumn<InformationOfficeModel, Double> timeLateCol;
     public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
-
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
+    IDBConnector idbConnector;
+
+    public void setDBConnector(IDBConnector idbConnector) {
+        this.idbConnector = idbConnector;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         homeButton.setOnMouseClicked(event -> {
             try {
                 ViewNavigator.gotoHomeForm();
@@ -75,8 +71,8 @@ public class TimekeepingInformationByOfficerController implements Initializable 
         timekeepingInformationOfficerTableView.setItems(FXCollections.observableList(informationOfficeModels));
 
         SummarizeInformationOfficer summarize = TimeKeepingManager.getInstance().calculateSummarizeByAction(informationOfficeModels);
-        totalWorkLabel.setText("" + summarize.getWorkingSession());
-        earlyLateLabel.setText("" + summarize.getEarlyAndLate());
+        totalWorkLabel.setText("" + Calculator.round(summarize.getWorkingSession()));
+        earlyLateLabel.setText("" + Calculator.round(summarize.getEarlyAndLate()));
     }
 
     void setButtonOpenForARow() {
@@ -109,15 +105,12 @@ public class TimekeepingInformationByOfficerController implements Initializable 
             }
 
             private void showDetail(InformationOfficeModel rowData) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeForm.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(fxmlLoader.load(), 450, 300));
-                stage.setTitle("Gửi thắc mắc chấm công");
-                stage.show();
-                var controller = fxmlLoader.<ShowDetailTimekeepingInformationByDayOfficerController>getController();
-                controller.showData(rowData);
-                controller.setStage(stage);
-                controller.setDBConnector(idbConnector);
+                try {
+                    ViewNavigator.showDetailTimekeepingOfficer(rowData);
+                }catch (Exception e){
+                    PopupNotification.notify(e.getMessage());
+                    e.printStackTrace();
+                }
             }
         });
     }

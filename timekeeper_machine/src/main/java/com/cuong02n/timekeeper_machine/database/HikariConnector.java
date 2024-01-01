@@ -7,6 +7,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Vector;
 
 @SuppressWarnings("all")
@@ -68,7 +69,6 @@ public class HikariConnector implements IDBConnector {
             action.setName(rs.getString("fullname"));
             actions.add(action);
         }
-        System.out.println(actions.size());
         return actions;
     }
 
@@ -118,6 +118,7 @@ public class HikariConnector implements IDBConnector {
             action.setContent(rs.getString("content"));
             action.setFullName(rs.getString("fullname"));
             action.setStatus(rs.getString("status"));
+            action.setDescription(rs.getString("description"));
             requests.add(action);
         }
         System.out.println(requests.size());
@@ -126,11 +127,12 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public void insertTimekeepingRequest(TimekeepingRequest timekeepingRequest) throws Exception {
-        String sql = "INSERT INTO `timekeeping_request` (`user_id`, `request_time`, `content`) VALUES (?,?,?)";
+        String sql = "INSERT INTO `timekeeping_request` (`user_id`, `request_time`, `content`,`description`) VALUES (?,?,?,?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setInt(1, timekeepingRequest.getUserId());
         st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
         st.setString(3, timekeepingRequest.getContent());
+        st.setString(4, timekeepingRequest.getDescription());
         st.executeUpdate();
     }
 
@@ -147,10 +149,6 @@ public class HikariConnector implements IDBConnector {
     }
 
 
-    @Override
-    public Vector<TimekeepingRequest> getTimeKeepingRequestByUserId(int userId) {
-        return null;
-    }
 
     @Override
     public void setStatusByRequestId(int requestId) throws Exception{
@@ -162,7 +160,7 @@ public class HikariConnector implements IDBConnector {
 
     @Override
     public Vector<Integer> getListUserId() throws Exception {
-        String sql = "SELECT user.user_id FROM `user`";
+        String sql = "SELECT `user`.user_id FROM `user`";
         PreparedStatement st = getConnection().prepareStatement(sql);
         ResultSet rs = st.executeQuery();
         Vector<Integer> ids = new Vector<>();
@@ -170,6 +168,27 @@ public class HikariConnector implements IDBConnector {
             ids.add(rs.getInt("user_id"));
         }
         return ids;
+    }
+
+    @Override
+    public void deleteAllActionByDayAndUserId(LocalDate date, int userId) throws Exception {
+        Timestamp start = Timestamp.valueOf(date.atStartOfDay());
+        Timestamp end = Timestamp.valueOf(date.atStartOfDay().plusDays(1));
+        String sql = "DELETE FROM timekeeping_action WHERE user_id = ? AND (action_time BETWEEN ? AND ?)";
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setInt(1,userId);
+        st.setTimestamp(2,start);
+        st.setTimestamp(3,end);
+        st.execute();
+    }
+
+    @Override
+    public void insertAction(Timestamp actionTime, int userId) throws Exception {
+        String sql = "INSERT INTO `timekeeper`.`timekeeping_action` (`user_id`, `action_time`) VALUES (?,?)";
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        st.setInt(1,userId);
+        st.setTimestamp(2,actionTime);
+        st.execute();
     }
 
 

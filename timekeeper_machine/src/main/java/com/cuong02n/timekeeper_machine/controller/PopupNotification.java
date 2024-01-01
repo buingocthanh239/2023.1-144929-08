@@ -1,4 +1,4 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import javafx.fxml.FXML;
@@ -39,6 +39,6 @@ public class PopupNotification {
         this.messengerLabel.setText(message);
     }
     public void onClickCloseButton(MouseEvent mouseEvent) {
-        stage.hide();
+        stage.close();
     }
 }

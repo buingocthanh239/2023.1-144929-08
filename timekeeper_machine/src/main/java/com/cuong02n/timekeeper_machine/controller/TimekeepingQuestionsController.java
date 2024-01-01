@@ -1,4 +1,4 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
@@ -12,6 +12,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.sql.Timestamp;
@@ -26,15 +27,16 @@ public class TimekeepingQuestionsController implements Initializable {
     public TableColumn<TimekeepingRequest, Timestamp> timeCol;
     public TableColumn<TimekeepingRequest, String> contentCol;
     public TableColumn<TimekeepingRequest, String> statusCol;
+    public TableColumn<TimekeepingRequest, String> descriptionCol;
+    public ImageView homeButton;
 
     IDBConnector idbConnector;
+    @FXML
+    private TableView<TimekeepingRequest> tableData;
 
     public void setDBConnector(IDBConnector idbConnector) {
         this.idbConnector = idbConnector;
     }
-
-    @FXML
-    private TableView<TimekeepingRequest> tableData;
 
     @FXML
 
@@ -72,6 +74,13 @@ public class TimekeepingQuestionsController implements Initializable {
             }
         });
 
+        homeButton.setOnMouseClicked(event -> {
+            try {
+                ViewNavigator.gotoHomeForm();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     void showData() {
@@ -82,6 +91,7 @@ public class TimekeepingQuestionsController implements Initializable {
         timeCol.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
         contentCol.setCellValueFactory(new PropertyValueFactory<>("content"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         ObservableList<TimekeepingRequest> observableList = FXCollections.observableList(data);
         tableData.setItems(observableList);
     }

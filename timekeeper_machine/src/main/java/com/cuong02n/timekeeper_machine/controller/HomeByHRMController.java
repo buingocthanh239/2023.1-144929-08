@@ -1,21 +1,23 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
-import com.cuong02n.timekeeper_machine.util.DateUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class HomeByHRMController {
+public class HomeByHRMController implements Initializable {
 
     public Button timekeepingInformationButton;
     public Button timekeepingQuestionsButton;
@@ -31,9 +33,8 @@ public class HomeByHRMController {
     public Label roomLabel;
     @FXML
     public Label idLabel;
-
-    @FXML
-    public void initialize(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         fullNameLabel.setText(user.getFullName());
         roomLabel.setText(String.valueOf(user.getRoomId()));
         idLabel.setText(String.valueOf(user.getUserId()));
@@ -53,4 +54,6 @@ public class HomeByHRMController {
     public void onClickTimekeepingInformationButton(ActionEvent actionEvent) throws Exception {
         ViewNavigator.gotoTimeKeepingInformationForm();
     }
+
+
 }

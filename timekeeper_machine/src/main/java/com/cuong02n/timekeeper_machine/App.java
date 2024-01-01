@@ -2,7 +2,7 @@ package com.cuong02n.timekeeper_machine;
 
 import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.model.User;
-import com.cuong02n.timekeeper_machine.view_controller.LoginController;
+import com.cuong02n.timekeeper_machine.controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

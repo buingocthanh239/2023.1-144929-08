@@ -63,16 +63,5 @@ public class TimeKeepingManager {
         return informationOfficeModels;
     }
 
-    public  Vector<InformationWorkerModel> transformDataToDisplayWorker(Vector<Action> actions) {
-        Vector<InformationWorkerModel> informationWorkerModels = new Vector<>();
-        for (int i = 0, indexRoot = 0; i < actions.size(); i++) {
-            while (i < actions.size() && (actions.get(i).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear() ==
-                                          actions.get(indexRoot).getActionTime().toLocalDateTime().toLocalDate().getDayOfYear())) {
-                i++;
-            }
-            informationWorkerModels.add(new InformationWorkerModel(actions.get(indexRoot).getActionTime(), actions.get(i - 1).getActionTime()));
-            indexRoot = i;
-        }
-        return informationWorkerModels;
-    }
+
 }

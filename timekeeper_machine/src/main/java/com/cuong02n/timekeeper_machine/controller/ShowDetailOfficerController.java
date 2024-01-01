@@ -1,4 +1,4 @@
-package com.cuong02n.timekeeper_machine.view_controller;
+package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
@@ -73,8 +73,8 @@ public class ShowDetailOfficerController implements Initializable {
             }
 
             private void showDetail(InformationOfficeModel rowData) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailTimekeepingInformationByDayOfficeHMRForm.fxml"));
-                var controller = fxmlLoader.<ShowDetailTimekeepingInformationByDayOfficerHMRController>getController();
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("changeTimeActionByHMRFrom.fxml"));
+                var controller = fxmlLoader.<ChangeActionByHMRController>getController();
                 controller.setDBConnector(idbConnector);
                 stg.setScene(new Scene(fxmlLoader.load()));
             }

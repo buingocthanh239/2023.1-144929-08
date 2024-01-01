@@ -7,8 +7,8 @@ module com.cuong02n.timekeeper_machine {
 //    requires mysql.connector.j;
     opens com.cuong02n.timekeeper_machine to javafx.fxml;
     exports com.cuong02n.timekeeper_machine;
-    exports com.cuong02n.timekeeper_machine.view_controller;
-    opens com.cuong02n.timekeeper_machine.view_controller to javafx.fxml;
+    exports com.cuong02n.timekeeper_machine.controller;
+    opens com.cuong02n.timekeeper_machine.controller to javafx.fxml;
     exports com.cuong02n.timekeeper_machine.model;
     opens com.cuong02n.timekeeper_machine.model to javafx.fxml;
     exports com.cuong02n.timekeeper_machine.util;

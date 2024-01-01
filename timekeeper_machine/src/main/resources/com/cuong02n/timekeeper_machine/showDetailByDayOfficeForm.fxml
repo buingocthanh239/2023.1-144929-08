@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.view_controller.ShowDetailTimekeepingInformationByDayOfficerController">
+<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cuong02n.timekeeper_machine.controller.ShowDetailADayController">
    <children>
       <Label layoutX="155.0" layoutY="10.0" text="Chi tiết chấm công" textFill="#3c3744">
          <font>
@@ -17,7 +17,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Button>
-      <Button fx:id="complainButton" layoutX="241.0" layoutY="237.0" mnemonicParsing="false" onAction="#onClickComplainButton" onMouseClicked="#onClickComplainButton" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Khiếu nại" textFill="#fbfff1">
+      <Button fx:id="continueButton" layoutX="241.0" layoutY="237.0" mnemonicParsing="false" onAction="#onClickComplainButton"  prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;" text="Khiếu nại" textFill="#fbfff1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

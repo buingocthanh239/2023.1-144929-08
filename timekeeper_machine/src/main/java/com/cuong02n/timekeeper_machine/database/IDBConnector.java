@@ -5,6 +5,7 @@ import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import com.cuong02n.timekeeper_machine.model.User;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Vector;
 
 public interface IDBConnector {
@@ -24,9 +25,11 @@ public interface IDBConnector {
 
     int findRoomIdByUserId(int userId) throws Exception;
 
-    Vector<TimekeepingRequest> getTimeKeepingRequestByUserId(int userId);
-
     void setStatusByRequestId(int requestId) throws Exception;
 
     Vector<Integer> getListUserId() throws Exception;
+
+    void deleteAllActionByDayAndUserId(LocalDate date,int userId) throws Exception;
+
+    void insertAction(Timestamp actionTime,int userId) throws Exception;
 }
