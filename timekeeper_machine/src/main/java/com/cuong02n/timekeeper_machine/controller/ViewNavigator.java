@@ -61,7 +61,7 @@ public class ViewNavigator {
         controller.setDBConnector(idbConnector);
         controller.setHideIcon();
 
-        controller.loadData(getStartTimeThisMonth(),getStartTimeOfNextMonth(getStartTimeThisMonth()),roomId);
+        controller.loadData(getStartTimeThisMonth(), getStartTimeOfNextMonth(getStartTimeThisMonth()), roomId);
     }
 
     public static void gotoTimeKeepingQuestionForm() throws Exception {
@@ -116,6 +116,7 @@ public class ViewNavigator {
         var controller = fxmlLoader.<RoomOfficerController>getController();
         controller.setDBConnector(idbConnector);
         controller.loadData(getStartTimeThisMonth(), TimeUtil.getStartTimeOfNextMonth(getStartTimeThisMonth()));
+        controller.loadRoomChoiceBox();
     }
 
     public static void gotoCompanyTimeKeepingOfficer(int year, int month) throws Exception {
@@ -127,13 +128,13 @@ public class ViewNavigator {
         stage.close();
     }
 
-    public static void showDetailOfficer(int userId,int year,int month) throws Exception{
+    public static void showDetailOfficer(int userId, int year, int month) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));
-
-        var controller =fxmlLoader.<ShowDetailOfficerController>getController();
+        stage.show();
+        var controller = fxmlLoader.<ShowDetailOfficerController>getController();
         controller.setDBConnector(idbConnector);
-        controller.loadData(userId,year,month);
+        controller.loadData(userId, year, month);
     }
 }

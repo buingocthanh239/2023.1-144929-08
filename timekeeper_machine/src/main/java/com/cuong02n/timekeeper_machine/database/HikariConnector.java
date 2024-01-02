@@ -1,17 +1,42 @@
 package com.cuong02n.timekeeper_machine.database;
 
 import com.cuong02n.timekeeper_machine.model.Action;
+import com.cuong02n.timekeeper_machine.model.Room;
 import com.cuong02n.timekeeper_machine.model.TimekeepingRequest;
 import com.cuong02n.timekeeper_machine.model.User;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Vector;
 
 @SuppressWarnings("all")
 public class HikariConnector implements IDBConnector {
+    private static HikariConnector instance = null;
+    final HikariConfig hikariConfig = new HikariConfig();
+    final HikariDataSource hikariDataSource;
+
+    private HikariConnector() {
+        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/timekeeper");
+        hikariConfig.setUsername("root");
+        hikariConfig.setPassword("ahasuwemeia");
+        hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
+        hikariConfig.addDataSourceProperty("prepStmtCacheSize", "250");
+        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        hikariDataSource = new HikariDataSource(hikariConfig);
+    }
+
+    static IDBConnector getInstance() {
+        if (instance == null) {
+            instance = new HikariConnector();
+        }
+        return instance;
+    }
+
     @Override
     public User getUserById(int id) throws Exception {
         String sql = "SELECT * FROM `user` where user_id = ?";
@@ -76,13 +101,25 @@ public class HikariConnector implements IDBConnector {
     public Vector<Integer> getListUserIdByRoomId(int roomId) throws Exception {
         String sql = "SELECT user.user_id FROM `user` WHERE room_id = ?";
         PreparedStatement st = getConnection().prepareStatement(sql);
-        st.setInt(1,roomId);
+        st.setInt(1, roomId);
         ResultSet rs = st.executeQuery();
         Vector<Integer> ids = new Vector<>();
         while (rs.next()) {
             ids.add(rs.getInt("user_id"));
         }
         return ids;
+    }
+
+    @Override
+    public Vector<Room> getListRoom() throws Exception {
+        String sql = "SELECT * FROM `room`";
+        PreparedStatement st = getConnection().prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+        Vector<Room> rooms = new Vector<>();
+        while (rs.next()) {
+            rooms.add(new Room(rs.getInt("room_id"), rs.getString("description")));
+        }
+        return rooms;
     }
 
     @Override
@@ -137,21 +174,7 @@ public class HikariConnector implements IDBConnector {
     }
 
     @Override
-    public int findRoomIdByUserId(int userId) throws Exception {
-        String sql = "SELECT room.room_id FROM `room`,`user` where room.room_id = user.room_id and user.user_id = ?";
-        PreparedStatement st = getConnection().prepareStatement(sql);
-        st.setObject(1, userId);
-        ResultSet resultSet = st.executeQuery();
-        if (resultSet.next()) {
-            return resultSet.getInt("room_id");
-        }
-        return -1;
-    }
-
-
-
-    @Override
-    public void setStatusByRequestId(int requestId) throws Exception{
+    public void setStatusByRequestId(int requestId) throws Exception {
         String sql = "UPDATE timekeeping_request SET `status`=N'Đã xử lý' WHERE request_id = ?";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setObject(1, requestId);
@@ -176,9 +199,9 @@ public class HikariConnector implements IDBConnector {
         Timestamp end = Timestamp.valueOf(date.atStartOfDay().plusDays(1));
         String sql = "DELETE FROM timekeeping_action WHERE user_id = ? AND (action_time BETWEEN ? AND ?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
-        st.setInt(1,userId);
-        st.setTimestamp(2,start);
-        st.setTimestamp(3,end);
+        st.setInt(1, userId);
+        st.setTimestamp(2, start);
+        st.setTimestamp(3, end);
         st.execute();
     }
 
@@ -186,33 +209,9 @@ public class HikariConnector implements IDBConnector {
     public void insertAction(Timestamp actionTime, int userId) throws Exception {
         String sql = "INSERT INTO `timekeeper`.`timekeeping_action` (`user_id`, `action_time`) VALUES (?,?)";
         PreparedStatement st = getConnection().prepareStatement(sql);
-        st.setInt(1,userId);
-        st.setTimestamp(2,actionTime);
+        st.setInt(1, userId);
+        st.setTimestamp(2, actionTime);
         st.execute();
-    }
-
-
-    private static HikariConnector instance = null;
-
-    static IDBConnector getInstance() {
-        if (instance == null) {
-            instance = new HikariConnector();
-        }
-        return instance;
-    }
-
-
-    final HikariConfig hikariConfig = new HikariConfig();
-    final HikariDataSource hikariDataSource;
-
-    private HikariConnector() {
-        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/timekeeper");
-        hikariConfig.setUsername("root");
-        hikariConfig.setPassword("ahasuwemeia");
-        hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
-        hikariConfig.addDataSourceProperty("prepStmtCacheSize", "250");
-        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        hikariDataSource = new HikariDataSource(hikariConfig);
     }
 
     public Connection getConnection() throws Exception {

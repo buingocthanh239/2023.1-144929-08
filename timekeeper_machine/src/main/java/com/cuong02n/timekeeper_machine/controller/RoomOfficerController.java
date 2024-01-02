@@ -1,28 +1,28 @@
 package com.cuong02n.timekeeper_machine.controller;
 
-import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
+import com.cuong02n.timekeeper_machine.model.Room;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
-import com.cuong02n.timekeeper_machine.util.TimeUtil;
+import com.cuong02n.timekeeper_machine.model.User;
 import com.cuong02n.timekeeper_machine.util.Helper;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import static com.cuong02n.timekeeper_machine.App.stg;
+import static com.cuong02n.timekeeper_machine.App.user;
 
+@SuppressWarnings("all")
 public class RoomOfficerController implements Initializable {
     public TableColumn<SummarizeInformationOfficer, Integer> userIdCol;
     public TableColumn<SummarizeInformationOfficer, String> fullNameCol;
@@ -33,7 +33,7 @@ public class RoomOfficerController implements Initializable {
     public TableView<SummarizeInformationOfficer> companyOfficerTableView;
     public ChoiceBox<String> monthChoiceBox;
     public Label roomIdLabel;
-    public ChoiceBox unitChoiceBox;
+    public ChoiceBox<String> roomChoiceBox;
 
     IDBConnector idbConnector;
 
@@ -44,12 +44,10 @@ public class RoomOfficerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadMonthChoiceBox();
-
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
 
             {
-                // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
             }
 
@@ -63,23 +61,32 @@ public class RoomOfficerController implements Initializable {
                     setGraphic(btn);
 
                     btn.setOnAction(event -> {
-                        SummarizeInformationOfficer rowData = getTableView().getItems().get(getIndex());
                         try {
+                            SummarizeInformationOfficer rowData = getTableView().getItems().get(getIndex());
                             showDetail(rowData);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     });
                 }
             }
 
-            private void showDetail(SummarizeInformationOfficer rowData) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                stg.setScene(scene);
+            private void showDetail(SummarizeInformationOfficer rowData) throws Exception {
+                LocalDate timeSelected = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem()).toLocalDateTime().toLocalDate();
+                ViewNavigator.showDetailOfficer(rowData.userId, timeSelected.getYear(), timeSelected.getMonthValue());
             }
         });
+    }
 
+    public void loadRoomChoiceBox() throws Exception {
+        Vector<String> data = new Vector<>();
+        Vector<Room> rooms = idbConnector.getListRoom();
+        roomChoiceBox.setValue("TOÀN CÔNG TY");
+        data.add("TOÀN CÔNG TY");
+        for (Room r : rooms) {
+            data.add(r.id + ":" + r.description);
+        }
+        roomChoiceBox.setItems(FXCollections.observableList(data));
     }
 
     public void loadMonthChoiceBox() {
@@ -106,7 +113,7 @@ public class RoomOfficerController implements Initializable {
         companyOfficerTableView.setItems(FXCollections.observableList(data));
     }
 
-    public void loadData(Timestamp start,Timestamp end,int roomId){
+    public void loadData(Timestamp start, Timestamp end, int roomId) {
         var data = new Vector<SummarizeInformationOfficer>();
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         numberWork.setCellValueFactory(new PropertyValueFactory<>("workingSession"));
@@ -122,18 +129,32 @@ public class RoomOfficerController implements Initializable {
         }
         companyOfficerTableView.setItems(FXCollections.observableList(data));
     }
-    public void onClickHomeButton(MouseEvent mouseEvent) throws Exception {
+
+    public void onClickHomeButton(MouseEvent ignoredMouseEvent) throws Exception {
         ViewNavigator.gotoHomeForm();
     }
 
-    public void onClickWatchButton(MouseEvent mouseEvent) {
-        Timestamp start = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem());
-        Timestamp end = TimeUtil.getStartTimeOfNextMonth(start);
-        loadData(start, end);
+    public void onClickWatchButton(MouseEvent ignoredMouseEvent) {
+        try {
+            Timestamp start = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem());
+            Timestamp end = TimeUtil.getStartTimeOfNextMonth(start);
+            if (user.getRole() == User.ROOM_MANAGER_ROLE) {
+                loadData(start, end, user.getRoomId());
+            } else if (user.getRole() == User.ADMIN_ROLE) {
+                if (roomChoiceBox.getSelectionModel().getSelectedItem().equals("TOÀN CÔNG TY")) {
+                    loadData(start, end);
+                } else {
+                    int roomId = Integer.parseInt(roomChoiceBox.getSelectionModel().getSelectedItem().split(":")[0]);
+                    loadData(start, end, roomId);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setHideIcon() {
         roomIdLabel.setVisible(false);
-        unitChoiceBox.setVisible(false);
+        roomChoiceBox.setVisible(false);
     }
 }
