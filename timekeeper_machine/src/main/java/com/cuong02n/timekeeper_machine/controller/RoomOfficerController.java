@@ -4,16 +4,16 @@ import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
+import com.cuong02n.timekeeper_machine.util.Helper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +23,7 @@ import java.util.Vector;
 
 import static com.cuong02n.timekeeper_machine.App.stg;
 
-public class CompanyTimekeepingInformationRoomOfficerController implements Initializable {
+public class RoomOfficerController implements Initializable {
     public TableColumn<SummarizeInformationOfficer, Integer> userIdCol;
     public TableColumn<SummarizeInformationOfficer, String> fullNameCol;
     public TableColumn<SummarizeInformationOfficer, Integer> numberWork;
@@ -31,6 +31,9 @@ public class CompanyTimekeepingInformationRoomOfficerController implements Initi
 
     public TableColumn<SummarizeInformationOfficer, Void> showDetailCol;
     public TableView<SummarizeInformationOfficer> companyOfficerTableView;
+    public ChoiceBox<String> monthChoiceBox;
+    public Label roomIdLabel;
+    public ChoiceBox unitChoiceBox;
 
     IDBConnector idbConnector;
 
@@ -40,6 +43,8 @@ public class CompanyTimekeepingInformationRoomOfficerController implements Initi
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadMonthChoiceBox();
+
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
 
@@ -74,6 +79,13 @@ public class CompanyTimekeepingInformationRoomOfficerController implements Initi
                 stg.setScene(scene);
             }
         });
+
+    }
+
+    public void loadMonthChoiceBox() {
+        Vector<String> data = Helper.getListMonth();
+        monthChoiceBox.setValue(data.get(0));
+        monthChoiceBox.setItems(FXCollections.observableList(data));
     }
 
 
@@ -85,13 +97,43 @@ public class CompanyTimekeepingInformationRoomOfficerController implements Initi
         numberWork.setCellValueFactory(new PropertyValueFactory<>("workingSession"));
         try {
             var userIds = idbConnector.getListUserId();
-            for(int userId : userIds){
-                data.add(TimeKeepingManager.getInstance().getSummarizeOfficerById(userId,start,end));
+            for (int userId : userIds) {
+                data.add(TimeKeepingManager.getInstance().getSummarizeOfficerById(userId, start, end));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         companyOfficerTableView.setItems(FXCollections.observableList(data));
+    }
 
+    public void loadData(Timestamp start,Timestamp end,int roomId){
+        var data = new Vector<SummarizeInformationOfficer>();
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        numberWork.setCellValueFactory(new PropertyValueFactory<>("workingSession"));
+        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        lateEarlyCol.setCellValueFactory(new PropertyValueFactory<>("earlyAndLate"));
+        try {
+            var userIds = idbConnector.getListUserIdByRoomId(roomId);
+            for (int userId : userIds) {
+                data.add(TimeKeepingManager.getInstance().getSummarizeOfficerById(userId, start, end));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        companyOfficerTableView.setItems(FXCollections.observableList(data));
+    }
+    public void onClickHomeButton(MouseEvent mouseEvent) throws Exception {
+        ViewNavigator.gotoHomeForm();
+    }
+
+    public void onClickWatchButton(MouseEvent mouseEvent) {
+        Timestamp start = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem());
+        Timestamp end = TimeUtil.getStartTimeOfNextMonth(start);
+        loadData(start, end);
+    }
+
+    public void setHideIcon() {
+        roomIdLabel.setVisible(false);
+        unitChoiceBox.setVisible(false);
     }
 }

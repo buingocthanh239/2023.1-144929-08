@@ -1,11 +1,11 @@
 package com.cuong02n.timekeeper_machine.model;
 
-import com.cuong02n.timekeeper_machine.util.DateUtil;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
-import static com.cuong02n.timekeeper_machine.util.Calculator.round;
+import static com.cuong02n.timekeeper_machine.util.Helper.round;
 import static java.lang.Math.abs;
 
 public class InformationOfficeModel {
@@ -35,18 +35,18 @@ public class InformationOfficeModel {
         this.start = start;
         this.userId = userId;
         this.name = name;
-        boolean workInMorning = DateUtil.isMorning(start);
-        boolean workInAfternoon = !DateUtil.isMorning(end);
+        boolean workInMorning = TimeUtil.isMorning(start);
+        boolean workInAfternoon = !TimeUtil.isMorning(end);
         long late = 0L;
         long early = 0L;
         if (workInMorning) {
-            late += abs(DateUtil.morningLate(start));
-            early += abs(DateUtil.morningEarly(end));
+            late += abs(TimeUtil.morningLate(start));
+            early += abs(TimeUtil.morningEarly(end));
         }
 
         if (workInAfternoon) {
-            late += abs(DateUtil.afternoonLate(start));
-            early += abs(DateUtil.afternoonEarly(end));
+            late += abs(TimeUtil.afternoonLate(start));
+            early += abs(TimeUtil.afternoonEarly(end));
         }
         this.day = start.toLocalDateTime().toLocalDate();
         this.morning = workInMorning;

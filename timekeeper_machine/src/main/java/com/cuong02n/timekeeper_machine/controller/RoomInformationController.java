@@ -4,7 +4,7 @@ import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.SummarizeInformationOfficer;
-import com.cuong02n.timekeeper_machine.util.DateUtil;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +26,7 @@ import java.util.Vector;
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class UnitTimekeepingInformationController implements Initializable {
+public class RoomInformationController implements Initializable {
     IDBConnector idbConnector;
     public void setDBConnector(IDBConnector idbConnector){
         this.idbConnector = idbConnector;
@@ -46,6 +46,7 @@ public class UnitTimekeepingInformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("init");
         showId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         showName.setCellValueFactory(new PropertyValueFactory<>("name"));
         showWorkSession.setCellValueFactory(new PropertyValueFactory<>("workingSession"));
@@ -55,7 +56,6 @@ public class UnitTimekeepingInformationController implements Initializable {
                 final Button btn = new Button("Mở");
 
                 {
-                    // Set styles for the button
                     btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
                 }
 
@@ -87,10 +87,10 @@ public class UnitTimekeepingInformationController implements Initializable {
             });
 
             int roomId = idbConnector.findRoomIdByUserId(user.getUserId());
-            Vector<Integer> ids = idbConnector.getUserByRoomId(roomId);
+            Vector<Integer> ids = idbConnector.getListUserIdByRoomId(roomId);
 
-            Timestamp start = DateUtil.getStartTimeThisMonth();
-            Timestamp end = DateUtil.getNow();
+            Timestamp start = TimeUtil.getStartTimeThisMonth();
+            Timestamp end = TimeUtil.getNow();
             Vector<SummarizeInformationOfficer> dataToDisplay = TimeKeepingManager.getInstance().getSummarizeOfficeByListId(ids,start,end);
             companyOfficerTableView.setItems(FXCollections.observableList(dataToDisplay));
             System.out.println(dataToDisplay.get(0));

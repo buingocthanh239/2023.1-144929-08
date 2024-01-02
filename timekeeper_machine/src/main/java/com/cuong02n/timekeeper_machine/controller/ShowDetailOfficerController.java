@@ -3,7 +3,8 @@ package com.cuong02n.timekeeper_machine.controller;
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
-import com.cuong02n.timekeeper_machine.util.DateUtil;
+import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,20 +25,21 @@ import static com.cuong02n.timekeeper_machine.App.stg;
 public class ShowDetailOfficerController implements Initializable {
     @FXML
     public Label labelText;
-    IDBConnector idbConnector;
-
-    public void setDBConnector(IDBConnector idbConnector) {
-        this.idbConnector = idbConnector;
-    }
-
     public TableView<InformationOfficeModel> timekeepingInformationOfficerTableview;
     public TableColumn<InformationOfficeModel, String> dayCol;
     public TableColumn<InformationOfficeModel, String> morningCol;
     public TableColumn<InformationOfficeModel, String> afternoonCol;
     public TableColumn<InformationOfficeModel, Double> timeLateCol;
     public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
-
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
+    IDBConnector idbConnector;
+    ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
+//            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
+    );
+
+    public void setDBConnector(IDBConnector idbConnector) {
+        this.idbConnector = idbConnector;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,9 +51,11 @@ public class ShowDetailOfficerController implements Initializable {
 
         showDetailCol.setCellFactory(param -> new TableCell<>() {
             final Button btn = new Button("Mở");
+
             {
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
             }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -82,13 +86,13 @@ public class ShowDetailOfficerController implements Initializable {
         timekeepingInformationOfficerTableview.setItems(observableList);
     }
 
-    public void showData(int userId,int year,int month){
-        labelText.setText("Xem chi tiết chấm công nhân viên "+userId);
-        Timestamp startMonth = DateUtil.getStartTimeOfMonth(year,month);
-        Timestamp endMonth = DateUtil.getStartTimeOfNextMonth(startMonth);
+    public void loadData(int userId, int year, int month) throws Exception {
+        labelText.setText("Xem chi tiết chấm công nhân viên " + userId);
+        Timestamp startMonth = TimeUtil.getStartTimeOfMonth(year, month);
+        Timestamp endMonth = TimeUtil.getStartTimeOfNextMonth(startMonth);
+        var actions = idbConnector.getActionByTimeStampAndUserId(startMonth, endMonth, userId);
+        var data = TimeKeepingManager.getInstance().transformActionToOfficeModel(actions);
+        timekeepingInformationOfficerTableview.setItems(FXCollections.observableList(data));
 
     }
-    ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
-//            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
-    );
 }

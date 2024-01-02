@@ -101,7 +101,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button fx:id="unitTimekeepingInformationButton" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClickUnitTimekeepingInformationButton" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Thông tin chấm công đơn vị" textAlignment="CENTER" textFill="#fbfff1">
+            <Button fx:id="unitTimekeepingInformationButton" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClickRoomInformationButton" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #090c9b; -fx-background-radius: 8;" text="Thông tin chấm công đơn vị" textAlignment="CENTER" textFill="#fbfff1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>

@@ -1,17 +1,12 @@
 package com.cuong02n.timekeeper_machine.util;
 
-import com.zaxxer.hikari.util.SuspendResumeLock;
-
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
-import java.util.Locale;
 
-public class DateUtil {
+public class TimeUtil {
     public static LocalTime startMorning = LocalTime.of(8, 0);
     public static LocalTime endMorning = LocalTime.of(12, 0);
     public static LocalTime startAfternoon = LocalTime.of(13, 0);

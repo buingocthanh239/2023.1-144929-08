@@ -1,24 +1,20 @@
 package com.cuong02n.timekeeper_machine.controller;
 
-import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.*;
-import com.cuong02n.timekeeper_machine.util.Calculator;
-import com.cuong02n.timekeeper_machine.util.DateUtil;
+import com.cuong02n.timekeeper_machine.util.Helper;
+import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -35,6 +31,7 @@ public class TimekeepingInformationByOfficerController implements Initializable 
     public TableColumn<InformationOfficeModel, Double> timeLateCol;
     public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
+    public ChoiceBox<String> monthChoiceBox;
     IDBConnector idbConnector;
 
     public void setDBConnector(IDBConnector idbConnector) {
@@ -50,12 +47,15 @@ public class TimekeepingInformationByOfficerController implements Initializable 
                 throw new RuntimeException(e);
             }
         });
-
+        loadMonthChoiceBox();
+    }
+    public void loadMonthChoiceBox() {
+        Vector<String> data = Helper.getListMonth();
+        monthChoiceBox.setValue(data.get(0));
+        monthChoiceBox.setItems(FXCollections.observableList(data));
     }
 
-    void loadDataFromDatabase() throws Exception {
-        Timestamp start = DateUtil.getStartTimeThisMonth();
-        Timestamp end = DateUtil.getNow();
+    void loadData(Timestamp start, Timestamp end) throws Exception {
         Vector<Action> actions = idbConnector.getActionByTimeStampAndUserId(start, end, user.getUserId());
         setButtonOpenForARow();
         showDataFromDataLoaded(actions);
@@ -63,16 +63,16 @@ public class TimekeepingInformationByOfficerController implements Initializable 
 
     void showDataFromDataLoaded(Vector<Action> actions) {
         morningCol.setCellValueFactory(new PropertyValueFactory<>("morning"));
-        afternoonCol.setCellValueFactory(new PropertyValueFactory<>("afternoon"));
         timeLateCol.setCellValueFactory(new PropertyValueFactory<>("timeLate"));
         timeEarlyCol.setCellValueFactory(new PropertyValueFactory<>("timeEarly"));
         dayCol.setCellValueFactory(new PropertyValueFactory<>("day"));
+        afternoonCol.setCellValueFactory(new PropertyValueFactory<>("afternoon"));
         Vector<InformationOfficeModel> informationOfficeModels = TimeKeepingManager.getInstance().transformActionToOfficeModel((actions));
         timekeepingInformationOfficerTableView.setItems(FXCollections.observableList(informationOfficeModels));
 
         SummarizeInformationOfficer summarize = TimeKeepingManager.getInstance().calculateSummarizeByAction(informationOfficeModels);
-        totalWorkLabel.setText("" + Calculator.round(summarize.getWorkingSession()));
-        earlyLateLabel.setText("" + Calculator.round(summarize.getEarlyAndLate()));
+        totalWorkLabel.setText("" + Helper.round(summarize.getWorkingSession()));
+        earlyLateLabel.setText("" + Helper.round(summarize.getEarlyAndLate()));
     }
 
     void setButtonOpenForARow() {
@@ -80,7 +80,6 @@ public class TimekeepingInformationByOfficerController implements Initializable 
             final Button btn = new Button("Mở");
 
             {
-                // Set styles for the button
                 btn.setStyle("-fx-background-color: #090c9b; -fx-text-fill: #fbfff1; -fx-font-size: 12px;");
             }
 
@@ -116,4 +115,9 @@ public class TimekeepingInformationByOfficerController implements Initializable 
     }
 
 
+    public void onClickWatchButton(MouseEvent mouseEvent) throws Exception{
+        Timestamp start = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem());
+        Timestamp end = TimeUtil.getStartTimeOfNextMonth(start);
+        loadData(start, end);
+    }
 }

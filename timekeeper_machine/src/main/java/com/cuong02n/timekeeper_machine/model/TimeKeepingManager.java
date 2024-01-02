@@ -2,9 +2,7 @@ package com.cuong02n.timekeeper_machine.model;
 
 import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
-import com.cuong02n.timekeeper_machine.util.Calculator;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Vector;
 

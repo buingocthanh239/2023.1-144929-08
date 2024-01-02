@@ -16,7 +16,6 @@ public interface IDBConnector {
     void insertAction(User user,int type) throws Exception;
 
     Vector<Action> getActionByTimeStampAndUserId(Timestamp start, Timestamp end, int userId) throws Exception;
-    Vector<Integer> getUserByRoomId(int roomId) throws Exception;
 
     User verify(String username, String password) throws Exception;
     Vector<TimekeepingRequest> getRequest() throws Exception;
@@ -28,6 +27,7 @@ public interface IDBConnector {
     void setStatusByRequestId(int requestId) throws Exception;
 
     Vector<Integer> getListUserId() throws Exception;
+    Vector<Integer> getListUserIdByRoomId(int roomId) throws Exception;
 
     void deleteAllActionByDayAndUserId(LocalDate date,int userId) throws Exception;
 

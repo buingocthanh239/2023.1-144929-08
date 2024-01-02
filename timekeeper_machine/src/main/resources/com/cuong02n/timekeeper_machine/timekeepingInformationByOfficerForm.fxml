@@ -59,12 +59,13 @@
                   <TableColumn fx:id="showDetailCol" minWidth="0.0" prefWidth="101.0" text="Xem chi tiết" />
                </columns>
             </TableView>
-            <ChoiceBox fx:id="monthChoicebox" layoutX="520.0" layoutY="28.0" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;" />
-            <Label layoutX="428.0" layoutY="31.0" text="Chọn tháng" textFill="#3c3744">
+            <ChoiceBox fx:id="monthChoiceBox" layoutX="472.0" layoutY="29.0" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #ffffff; -fx-border-color: #b4c5e4;" />
+            <Label layoutX="387.0" layoutY="31.0" text="Chọn tháng" textFill="#3c3744">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button layoutX="548.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#onClickWatchButton" prefHeight="25.0" prefWidth="40.0" text="Xem" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="50.0" prefWidth="800.0">

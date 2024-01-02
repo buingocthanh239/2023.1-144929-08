@@ -73,7 +73,7 @@ public class HikariConnector implements IDBConnector {
     }
 
     @Override
-    public Vector<Integer> getUserByRoomId(int roomId) throws Exception {
+    public Vector<Integer> getListUserIdByRoomId(int roomId) throws Exception {
         String sql = "SELECT user.user_id FROM `user` WHERE room_id = ?";
         PreparedStatement st = getConnection().prepareStatement(sql);
         st.setInt(1,roomId);
