@@ -105,7 +105,7 @@ public class TimekeepingInformationByOfficerController implements Initializable 
 
             private void showDetail(InformationOfficeModel rowData) throws IOException {
                 try {
-                    ViewNavigator.showDetailTimekeepingOfficer(rowData);
+                    ViewNavigator.showDetailOfficer(rowData);
                 }catch (Exception e){
                     PopupNotification.notify(e.getMessage());
                     e.printStackTrace();
@@ -115,7 +115,7 @@ public class TimekeepingInformationByOfficerController implements Initializable 
     }
 
 
-    public void onClickWatchButton(MouseEvent mouseEvent) throws Exception{
+    public void onClickWatchButton(MouseEvent ignoreMouseEvent) throws Exception{
         Timestamp start = Helper.getTimeStamp(monthChoiceBox.getSelectionModel().getSelectedItem());
         Timestamp end = TimeUtil.getStartTimeOfNextMonth(start);
         loadData(start, end);

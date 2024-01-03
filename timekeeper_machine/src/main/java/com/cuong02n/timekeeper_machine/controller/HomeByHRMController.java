@@ -2,6 +2,7 @@ package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
+import com.cuong02n.timekeeper_machine.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ public class HomeByHRMController implements Initializable {
     public Button timekeepingQuestionsButton;
     public Button companyTimekeepingInformationButton;
     public Button timekeepingStatisticsButton;
+    public Label roleLabel;
     private IDBConnector idbConnector;
     public void setDBConnector(IDBConnector idbConnector){
         this.idbConnector=idbConnector;
@@ -35,9 +37,11 @@ public class HomeByHRMController implements Initializable {
     public Label idLabel;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fullNameLabel.setText(user.getFullName());
         roomLabel.setText(String.valueOf(user.getRoomId()));
         idLabel.setText(String.valueOf(user.getUserId()));
+
+        fullNameLabel.setText(user.getFullName());
+        roleLabel.setText("QUẢN TRỊ VIÊN");
     }
     public void onClickTimekeepingStatisticsButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingStatisticsForm3.fxml"));

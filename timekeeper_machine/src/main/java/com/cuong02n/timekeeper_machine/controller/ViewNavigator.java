@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Timestamp;
+
 import static com.cuong02n.timekeeper_machine.App.stg;
 import static com.cuong02n.timekeeper_machine.App.user;
 import static com.cuong02n.timekeeper_machine.util.TimeUtil.getStartTimeOfNextMonth;
@@ -72,7 +74,7 @@ public class ViewNavigator {
         controller.showData();
     }
 
-    public static void showDetailTimekeepingOfficer(InformationOfficeModel rowData) throws Exception {
+    public static void showDetailOfficer(InformationOfficeModel rowData) throws Exception {
         FXMLLoader fxmlLoader;
         Stage stage = new Stage();
         fxmlLoader = new FXMLLoader(App.class.getResource("showDetailByDayOfficeForm.fxml"));
@@ -80,7 +82,7 @@ public class ViewNavigator {
         stage.setTitle("Chi tiết");
         stage.show();
 
-        var controller = fxmlLoader.<ShowDetailADayController>getController();
+        var controller = fxmlLoader.<ShowDetailByDayController>getController();
         controller.setDBConnector(idbConnector);
         controller.showData(rowData);
     }
@@ -115,7 +117,7 @@ public class ViewNavigator {
 
         var controller = fxmlLoader.<RoomOfficerController>getController();
         controller.setDBConnector(idbConnector);
-        controller.loadData(getStartTimeThisMonth(), TimeUtil.getStartTimeOfNextMonth(getStartTimeThisMonth()));
+        controller.loadData(new Timestamp(0), TimeUtil.getStartTimeOfNextMonth(getStartTimeThisMonth()));
         controller.loadRoomChoiceBox();
     }
 

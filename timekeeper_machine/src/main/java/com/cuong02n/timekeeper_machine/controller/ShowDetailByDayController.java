@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class ShowDetailADayController implements Initializable {
+public class ShowDetailByDayController implements Initializable {
 
 
     @FXML

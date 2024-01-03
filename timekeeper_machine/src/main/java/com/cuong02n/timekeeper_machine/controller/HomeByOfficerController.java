@@ -14,6 +14,7 @@ public class HomeByOfficerController implements Initializable {
     public Label fullNameLabel;
     public Label roomLabel;
     public Label idLabel;
+    public Label roleLabel;
     private IDBConnector idbConnector;
     public void setDBConnector(IDBConnector idbConnector){
         this.idbConnector=idbConnector;
@@ -23,6 +24,7 @@ public class HomeByOfficerController implements Initializable {
         fullNameLabel.setText(user.getFullName());
         roomLabel.setText(String.valueOf(user.getRoomId()));
         idLabel.setText(String.valueOf(user.getUserId()));
+        roleLabel.setText("NHÂN VIÊN VĂN PHÒNG");
     }
     public void onClickButton(ActionEvent actionEvent) throws Exception{
         ViewNavigator.gotoTimeKeepingInformationForm();

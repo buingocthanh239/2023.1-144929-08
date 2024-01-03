@@ -77,6 +77,7 @@ public class TimeUtil {
         return Timestamp.valueOf(LocalDate.now().atStartOfDay().withYear(year).withMonth(month).withDayOfMonth(1));
     }
     public static Timestamp getStartTimeOfNextMonth(Timestamp timestamp){
+        if(timestamp.getTime()==0) return getNow();
         return Timestamp.valueOf(timestamp.toLocalDateTime().withDayOfMonth(1).plusMonths(1));
     }
     public static Timestamp getStartTimeOfMonthLastYear(int month){
