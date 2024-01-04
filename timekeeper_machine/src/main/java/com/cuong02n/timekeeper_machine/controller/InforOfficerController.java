@@ -5,6 +5,8 @@ import com.cuong02n.timekeeper_machine.model.*;
 import com.cuong02n.timekeeper_machine.util.Helper;
 import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -20,7 +22,7 @@ import java.util.Vector;
 
 import static com.cuong02n.timekeeper_machine.App.user;
 
-public class TimekeepingInformationByOfficerController implements Initializable {
+public class InforOfficerController implements Initializable {
     public Label earlyLateLabel;
     public Label totalWorkLabel;
     public ImageView homeButton;
@@ -92,12 +94,15 @@ public class TimekeepingInformationByOfficerController implements Initializable 
                     setAlignment(Pos.CENTER);
                     setGraphic(btn);
 
-                    btn.setOnAction(event -> {
-                        InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
-                        try {
-                            showDetail(rowData);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                    btn.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            InformationOfficeModel rowData = getTableView().getItems().get(getIndex());
+                            try {
+                                showDetail(rowData);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     });
                 }
@@ -107,7 +112,7 @@ public class TimekeepingInformationByOfficerController implements Initializable 
                 try {
                     ViewNavigator.showDetailOfficer(rowData);
                 }catch (Exception e){
-                    PopupNotification.notify(e.getMessage());
+                    PopupController.notify(e.getMessage());
                     e.printStackTrace();
                 }
             }

@@ -1,6 +1,6 @@
 package com.cuong02n.timekeeper_machine.model;
 
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.App;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 
 import java.sql.Timestamp;
@@ -11,7 +11,7 @@ public class TimeKeepingManager {
 
     public static TimeKeepingManager getInstance() {
         if (ins == null) {
-            ins = new TimeKeepingManager(DatabaseManager.hikariConnector);
+            ins = new TimeKeepingManager(App.hikariConnector);
         }
         return ins;
     }

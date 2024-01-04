@@ -1,17 +1,16 @@
 package com.cuong02n.timekeeper_machine;
 
 import com.cuong02n.timekeeper_machine.controller.ViewNavigator;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
+import com.cuong02n.timekeeper_machine.database.HikariMySqlTemplate;
+import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.User;
-import com.cuong02n.timekeeper_machine.controller.LoginController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class App extends Application {
+    public static final IDBConnector hikariConnector = HikariMySqlTemplate.getInstance();
     public static Stage stg;
     public static User user = null;
 

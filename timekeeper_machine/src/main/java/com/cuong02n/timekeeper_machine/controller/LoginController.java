@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
-
 import static com.cuong02n.timekeeper_machine.App.user;
 
 public class LoginController {
@@ -22,12 +20,12 @@ public class LoginController {
     TextField idField;
 
     @FXML
-    public void onClickLoginButton(ActionEvent actionEvent) throws Exception {
+    public void onClickLoginButton(ActionEvent ignoreActionEvent) throws Exception {
         String username = idField.getText();
         String password = passWordField.getText();
         user = idbConnector.verify(username, password);
         if (user == null) {
-            PopupNotification.notify("SAI MẬT KHẨU");
+            PopupController.notify("SAI MẬT KHẨU");
             return;
         }
         ViewNavigator.gotoHomeForm();

@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.Timestamp;
 
-public class CreateTimekeepingQuestionsController {
+public class CreateRequestController {
     public TextField startHour;
     public TextField startMinute;
     public TextField endHour;
@@ -29,7 +29,7 @@ public class CreateTimekeepingQuestionsController {
         this.idbConnector = idbConnector;
     }
 
-    public void onApplyEditButton(ActionEvent actionEvent) {
+    public void onClickConfirmQuestion(ActionEvent actionEvent) {
         ViewNavigator.closeStage(actionEvent);
         try {
             String description = commentField.getText();
@@ -51,10 +51,10 @@ public class CreateTimekeepingQuestionsController {
             timekeepingRequest.setDescription(description);
             idbConnector.insertTimekeepingRequest(timekeepingRequest);
 
-            PopupNotification.notify("Thành công");
+            PopupController.notify("Thành công");
         } catch (Exception e) {
             e.printStackTrace();
-            PopupNotification.notify(e.getMessage());
+            PopupController.notify(e.getMessage());
         }
     }
 

@@ -5,12 +5,12 @@ import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import com.cuong02n.timekeeper_machine.model.TimeKeepingManager;
 import com.cuong02n.timekeeper_machine.util.TimeUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Timestamp;
@@ -27,9 +27,12 @@ public class ShowDetailOfficerController implements Initializable {
     public TableColumn<InformationOfficeModel, Double> timeEarlyCol;
     public TableColumn<InformationOfficeModel, Void> showDetailCol;
     IDBConnector idbConnector;
-    ObservableList<InformationOfficeModel> observableList = FXCollections.observableArrayList(
-//            new InformationOfficeModel("1/1/2023", "có", "không", 0, 0)
-    );
+
+    Stage stageParent;
+
+    public void setStageParent(Stage stage) {
+        stageParent = stage;
+    }
 
     public void setDBConnector(IDBConnector idbConnector) {
         this.idbConnector = idbConnector;
@@ -74,7 +77,7 @@ public class ShowDetailOfficerController implements Initializable {
                 ViewNavigator.showDetailOfficer(rowData);
             }
         });
-        timekeepingInformationOfficerTableview.setItems(observableList);
+//        timekeepingInformationOfficerTableview.setItems(observableList);
     }
 
     public void loadData(int userId, int year, int month) throws Exception {

@@ -8,11 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class PopupNotification {
-    @FXML
-    public Label messageLabel;
-
-    // static
+public class PopupController {
     public static void notify(String message) {
         try {
             Stage stage = new Stage();
@@ -21,7 +17,7 @@ public class PopupNotification {
             stage.setScene(scene);
 
             stage.show();
-            var controller = fxmlLoader.<PopupNotification>getController();
+            var controller = fxmlLoader.<PopupController>getController();
             controller.setStage(stage);
             controller.setMessage(message);
         } catch (Exception e) {

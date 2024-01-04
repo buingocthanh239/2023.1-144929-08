@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0"
             prefWidth="444.0" style="-fx-background-color: #fbfff1;" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.cuong02n.timekeeper_machine.controller.CreateTimekeepingQuestionsController">
+            fx:controller="com.cuong02n.timekeeper_machine.controller.CreateRequestController">
    <Label layoutX="150.0" layoutY="5.0" text="Bản ghi chấm công" textFill="#3c3744">
       <font>
          <Font name="System Bold" size="16.0"/>
@@ -37,7 +37,7 @@
          <Label layoutX="134.0" layoutY="29.0" text="/" textFill="#3c3744"/>
       </children>
    </AnchorPane>
-   <Button fx:id="applyButton" layoutX="70.0" layoutY="277.0" mnemonicParsing="false" onAction="#onApplyEditButton"
+   <Button fx:id="applyButton" layoutX="70.0" layoutY="277.0" mnemonicParsing="false" onAction="#onClickConfirmQuestion"
            prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: #090c9b; -fx-background-radius: 5;"
            text="Đồng ý" textFill="#fbfff1">
       <padding>

@@ -1,7 +1,6 @@
 package com.cuong02n.timekeeper_machine.controller;
 
 import com.cuong02n.timekeeper_machine.App;
-import com.cuong02n.timekeeper_machine.database.DatabaseManager;
 import com.cuong02n.timekeeper_machine.database.IDBConnector;
 import com.cuong02n.timekeeper_machine.model.InformationOfficeModel;
 import com.cuong02n.timekeeper_machine.model.User;
@@ -20,7 +19,7 @@ import static com.cuong02n.timekeeper_machine.util.TimeUtil.getStartTimeOfNextMo
 import static com.cuong02n.timekeeper_machine.util.TimeUtil.getStartTimeThisMonth;
 
 public class ViewNavigator {
-    static IDBConnector idbConnector = DatabaseManager.hikariConnector;
+    static IDBConnector idbConnector = App.hikariConnector;
 
     public static void gotoHomeForm() throws Exception {
         FXMLLoader loader;
@@ -48,9 +47,9 @@ public class ViewNavigator {
     }
 
     public static void gotoTimeKeepingInformationForm() throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("timekeepingInformationByOfficerForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("inforOfficerForm.fxml"));
         stg.setScene(new Scene(fxmlLoader.load()));
-        var controller = fxmlLoader.<TimekeepingInformationByOfficerController>getController();
+        var controller = fxmlLoader.<InforOfficerController>getController();
 
         controller.setDBConnector(idbConnector);
         controller.loadData(getStartTimeThisMonth(), TimeUtil.getNow());
@@ -90,11 +89,11 @@ public class ViewNavigator {
     public static void gotoCreateRequest(InformationOfficeModel data) throws Exception {
         FXMLLoader fxmlLoader;
         Stage stage = new Stage();
-        fxmlLoader = new FXMLLoader(App.class.getResource("createTimekeepingQuestionsForm.fxml"));
+        fxmlLoader = new FXMLLoader(App.class.getResource("createRequestForm.fxml"));
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.setTitle("Gửi thắc mắc chấm công");
         stage.show();
-        var controller = fxmlLoader.<CreateTimekeepingQuestionsController>getController();
+        var controller = fxmlLoader.<CreateRequestController>getController();
         controller.setDBConnector(idbConnector);
         controller.showData(data);
     }

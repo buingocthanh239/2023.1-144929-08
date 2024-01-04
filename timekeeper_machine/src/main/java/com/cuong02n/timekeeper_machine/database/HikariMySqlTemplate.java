@@ -15,13 +15,13 @@ import java.time.LocalDate;
 import java.util.Vector;
 
 @SuppressWarnings("all")
-public class HikariConnector implements IDBConnector {
-    private static HikariConnector instance = null;
+public class HikariMySqlTemplate implements IDBConnector {
+    private static HikariMySqlTemplate instance = null;
     final HikariConfig hikariConfig = new HikariConfig();
     final HikariDataSource hikariDataSource;
     Connection connection;
 
-    private HikariConnector() {
+    private HikariMySqlTemplate() {
         hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/timekeeper");
         hikariConfig.setUsername("root");
         hikariConfig.setPassword("ahasuwemeia");
@@ -35,9 +35,9 @@ public class HikariConnector implements IDBConnector {
         }
     }
 
-    static IDBConnector getInstance() {
+    public static IDBConnector getInstance() {
         if (instance == null) {
-            instance = new HikariConnector();
+            instance = new HikariMySqlTemplate();
         }
         return instance;
     }
