@@ -131,6 +131,7 @@ public class ViewNavigator {
     }
 
     public static void showDetailOfficer(int userId, int year, int month) throws Exception {
+        System.out.println(userId+" "+year+" "+month);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));

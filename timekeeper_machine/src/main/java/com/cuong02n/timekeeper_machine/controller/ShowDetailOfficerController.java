@@ -81,9 +81,10 @@ public class ShowDetailOfficerController implements Initializable {
         labelText.setText("Xem chi tiết chấm công nhân viên " + userId);
         Timestamp startMonth = TimeUtil.getStartTimeOfMonth(year, month);
         Timestamp endMonth = TimeUtil.getStartTimeOfNextMonth(startMonth);
+        System.out.println(startMonth);
+        System.out.println(endMonth);
         var actions = idbConnector.getActionByTimeStampAndUserId(startMonth, endMonth, userId);
         var data = TimeKeepingManager.getInstance().transformActionToOfficeModel(actions);
         timekeepingInformationOfficerTableview.setItems(FXCollections.observableList(data));
-
     }
 }
