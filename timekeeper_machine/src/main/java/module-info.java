@@ -4,6 +4,7 @@ module com.cuong02n.timekeeper_machine {
     requires java.desktop;
     requires java.sql;
     requires com.zaxxer.hikari;
+    requires org.junit.jupiter.api;
 //    requires mysql.connector.j;
     opens com.cuong02n.timekeeper_machine to javafx.fxml;
     exports com.cuong02n.timekeeper_machine;
