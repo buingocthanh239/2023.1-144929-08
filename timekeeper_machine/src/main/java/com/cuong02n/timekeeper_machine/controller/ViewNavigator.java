@@ -131,7 +131,7 @@ public class ViewNavigator {
     }
 
     public static void showDetailOfficer(int userId, int year, int month) throws Exception {
-        System.out.println(userId+" "+year+" "+month);
+        System.out.println(userId + " " + year + " " + month);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("showDetailOfficerForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));
@@ -139,5 +139,21 @@ public class ViewNavigator {
         var controller = fxmlLoader.<ShowDetailOfficerController>getController();
         controller.setDBConnector(idbConnector);
         controller.loadData(userId, year, month);
+    }
+
+    public static void gotoLogin() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("loginForm.fxml"));
+            stg.setTitle("Phần mềm quản lý chấm công");
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            stg.setScene(scene);
+            stg.show();
+
+            var controller = fxmlLoader.<LoginController>getController();
+            controller.setDBConnector(idbConnector);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 }
